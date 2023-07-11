@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`union it should create a builder for a fragment that uses a union type 1`] = `
+"export const fakeCat = (
+  override?: DeepPartial<types.CatFragment>
+): types.CatFragment => {
+  const fixture: types.CatFragment = {
+    name: faker.commerce.productAdjective() + " " + faker.commerce.product(),
+    color: faker.color.human(),
+  };
+
+  return override ? merge(fixture, override) : fixture;
+};
+
+export const fakeDog = (
+  override?: DeepPartial<types.DogFragment>
+): types.DogFragment => {
+  const fixture: types.DogFragment = {
+    name: faker.commerce.productAdjective() + " " + faker.commerce.product(),
+    isGoodBoy: faker.datatype.boolean(),
+  };
+
+  return override ? merge(fixture, override) : fixture;
+};
+
+export const fakePet = (): types.PetFragment =>
+  faker.helpers.arrayElement([fakeCat(), fakeDog()]);
+"
+`;

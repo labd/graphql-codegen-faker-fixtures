@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic it should create a basic builder for the person fragment 1`] = `
+"export const fakePerson = (
+  override?: DeepPartial<types.PersonFragment>
+): types.PersonFragment => {
+  const fixture: types.PersonFragment = {
+    name: faker.commerce.productAdjective() + " " + faker.commerce.product(),
+    age: faker.lorem.words(),
+  };
+
+  return override ? merge(fixture, override) : fixture;
+};
+"
+`;
