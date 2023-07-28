@@ -1,6 +1,6 @@
-import { plugin } from '../plugin'
-import { buildSchema } from 'graphql/utilities'
-import { parse } from 'graphql'
+import { plugin } from "../plugin";
+import { buildSchema } from "graphql/utilities";
+import { parse } from "graphql";
 
 const schema = /* GraphQL */ `
   type Person {
@@ -8,7 +8,7 @@ const schema = /* GraphQL */ `
     age: String
     address: String
   }
-`
+`;
 
 const document = /* GraphQL */ `
   fragment person on Person {
@@ -16,16 +16,16 @@ const document = /* GraphQL */ `
     name
     age
   }
-`
+`;
 
-describe('typename', () => {
-  it('it should create a basic builder which includes a hardcoded __typename', () => {
+describe("typename", () => {
+  it("it should create a basic builder which includes a hardcoded __typename", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
       { buildersOnly: true },
-    )
-    expect(response).toMatchSnapshot()
-    expect(response).toContain('__typename: "Person"')
-  })
-})
+    );
+    expect(response).toMatchSnapshot();
+    expect(response).toContain('__typename: "Person"');
+  });
+});

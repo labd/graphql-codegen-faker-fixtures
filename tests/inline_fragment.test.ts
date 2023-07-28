@@ -1,6 +1,6 @@
-import { plugin } from '../plugin'
-import { buildSchema } from 'graphql/utilities'
-import { parse } from 'graphql'
+import { plugin } from "../plugin";
+import { buildSchema } from "graphql/utilities";
+import { parse } from "graphql";
 
 const schema = /* GraphQL */ `
   type Person {
@@ -24,7 +24,7 @@ const schema = /* GraphQL */ `
   }
 
   union Pet = Cat | Dog
-`
+`;
 
 const document = /* GraphQL */ `
   fragment houseHold on HouseHold {
@@ -44,15 +44,15 @@ const document = /* GraphQL */ `
       }
     }
   }
-`
+`;
 
-describe('inline_fragment', () => {
-  it('it should create a builder for a fragment that uses inline fragments', () => {
+describe("inline_fragment", () => {
+  it("it should create a builder for a fragment that uses inline fragments", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
       { buildersOnly: true },
-    )
-    expect(response).toMatchSnapshot()
-  })
-})
+    );
+    expect(response).toMatchSnapshot();
+  });
+});

@@ -1,6 +1,6 @@
-import { plugin } from '../plugin'
-import { buildSchema } from 'graphql/utilities'
-import { parse } from 'graphql'
+import { plugin } from "../plugin";
+import { buildSchema } from "graphql/utilities";
+import { parse } from "graphql";
 
 const schema = /* GraphQL */ `
   type Person {
@@ -13,7 +13,7 @@ const schema = /* GraphQL */ `
     foo: String
     person: Person
   }
-`
+`;
 
 const document = /* GraphQL */ `
   fragment HouseHoldA on HouseHold {
@@ -31,15 +31,15 @@ const document = /* GraphQL */ `
       gender
     }
   }
-`
+`;
 
-describe('multi fragments on same object', () => {
-  it('it be able to deal with multiple fragments on same object', () => {
+describe("multi fragments on same object", () => {
+  it("it be able to deal with multiple fragments on same object", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
       { buildersOnly: true },
-    )
-    expect(response).toMatchSnapshot()
-  })
-})
+    );
+    expect(response).toMatchSnapshot();
+  });
+});

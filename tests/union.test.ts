@@ -1,6 +1,6 @@
-import { plugin } from '../plugin'
-import { buildSchema } from 'graphql/utilities'
-import { parse } from 'graphql'
+import { plugin } from "../plugin";
+import { buildSchema } from "graphql/utilities";
+import { parse } from "graphql";
 
 const schema = /* GraphQL */ `
   type Cat {
@@ -14,7 +14,7 @@ const schema = /* GraphQL */ `
   }
 
   union Pet = Cat | Dog
-`
+`;
 
 const document = /* GraphQL */ `
   fragment cat on Cat {
@@ -31,19 +31,19 @@ const document = /* GraphQL */ `
     ...cat
     ...dog
   }
-`
+`;
 
-describe('union', () => {
-  it('it should create a builder for a fragment that uses a union type', () => {
+describe("union", () => {
+  it("it should create a builder for a fragment that uses a union type", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
       { buildersOnly: true },
-    )
-    expect(response).toMatchSnapshot()
+    );
+    expect(response).toMatchSnapshot();
 
     expect(response).toContain(
-      'faker.helpers.arrayElement([fakeCat(), fakeDog()])',
-    )
-  })
-})
+      "faker.helpers.arrayElement([fakeCat(), fakeDog()])",
+    );
+  });
+});

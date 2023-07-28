@@ -1,6 +1,6 @@
-import { plugin } from '../plugin'
-import { buildSchema } from 'graphql/utilities'
-import { parse } from 'graphql'
+import { plugin } from "../plugin";
+import { buildSchema } from "graphql/utilities";
+import { parse } from "graphql";
 
 const schema = /* GraphQL */ `
   type Address {
@@ -13,7 +13,7 @@ const schema = /* GraphQL */ `
     age: String
     address: Address
   }
-`
+`;
 
 const document = /* GraphQL */ `
   fragment person on Person {
@@ -24,15 +24,15 @@ const document = /* GraphQL */ `
       city
     }
   }
-`
+`;
 
-describe('nested', () => {
-  it('it should create a builder for a fragment that uses nested fields', () => {
+describe("nested", () => {
+  it("it should create a builder for a fragment that uses nested fields", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
       { buildersOnly: true },
-    )
-    expect(response).toMatchSnapshot()
-  })
-})
+    );
+    expect(response).toMatchSnapshot();
+  });
+});

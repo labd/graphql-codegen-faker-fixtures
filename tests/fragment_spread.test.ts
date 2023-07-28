@@ -1,6 +1,6 @@
-import { plugin } from '../plugin'
-import { buildSchema } from 'graphql/utilities'
-import { parse } from 'graphql'
+import { plugin } from "../plugin";
+import { buildSchema } from "graphql/utilities";
+import { parse } from "graphql";
 
 const schema = /* GraphQL */ `
   type Person {
@@ -24,7 +24,7 @@ const schema = /* GraphQL */ `
   }
 
   union Pet = Cat | Dog
-`
+`;
 
 const document = /* GraphQL */ `
   fragment cat on Cat {
@@ -47,15 +47,15 @@ const document = /* GraphQL */ `
       ...dog
     }
   }
-`
+`;
 
-describe('fragment_spread', () => {
-  it('it should create a builder for a fragment that uses fragment spreads', () => {
+describe("fragment_spread", () => {
+  it("it should create a builder for a fragment that uses fragment spreads", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
       { buildersOnly: true },
-    )
-    expect(response).toMatchSnapshot()
-  })
-})
+    );
+    expect(response).toMatchSnapshot();
+  });
+});
