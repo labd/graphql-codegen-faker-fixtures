@@ -33,7 +33,7 @@
     "@faker-js/faker": "^8.0.2",
     "@graphql-codegen/cli": "^4.0.1",
     "@graphql-codegen/plugin-helpers": "^5.0.0",
-    "@labdigital/eslint-config-node": "^0.0.5",
+    "@labdigital/eslint-config-node": "^0.1.0",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.2",
     "graphql-tag": "^2.12.6",
