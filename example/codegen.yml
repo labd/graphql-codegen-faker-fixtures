@@ -1,7 +1,7 @@
 schema: example/schema.graphql
 documents: example/queries.ts
 generates:
-  example/fixture_builder.ts:
+  example/fixture_builders.ts:
     plugins:
       - ./dist/index.js
     config:
