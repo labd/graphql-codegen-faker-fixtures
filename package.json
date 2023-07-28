@@ -20,6 +20,7 @@
     "example:yml": "graphql-codegen --config example/codegen.yml",
     "format": "prettier \"**/*.{ts,tsx,md}\" --write",
     "lint": "eslint --max-warnings 0",
+    "prepare": "husky install",
     "start": "tsup --watch",
     "test": "vitest --run",
     "typecheck": "tsc --noEmit"
@@ -37,6 +38,8 @@
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.2",
     "graphql-tag": "^2.12.6",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
     "prettier": "^3.0.0",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6",
