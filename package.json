@@ -19,6 +19,7 @@
     "start": "tsup --watch",
     "build": "tsup",
     "lint": "eslint --max-warnings 0",
+    "format": "prettier \"**/*.{ts,tsx,md}\" --write",
     "example:ts": "graphql-codegen --config example/codegen.ts",
     "example:yml": "graphql-codegen --config example/codegen.yml"
   },
