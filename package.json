@@ -17,8 +17,10 @@
   "scripts": {
     "test": "jest --silent",
     "start": "tsup --watch",
-    "build": "tsup"
+    "build": "tsup",
     "lint": "eslint --max-warnings 0",
+    "example:ts": "graphql-codegen --config example/codegen.ts",
+    "example:yml": "graphql-codegen --config example/codegen.yml"
   },
   "dependencies": {
     "deepmerge-ts": "4.2.2",
