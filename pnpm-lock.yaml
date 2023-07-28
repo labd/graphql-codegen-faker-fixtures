@@ -12,8 +12,8 @@ dependencies:
     specifier: ^16.7.1
     version: 16.7.1
   ts-deepmerge:
-    specifier: 5.0.0
-    version: 5.0.0
+    specifier: 6.2.0
+    version: 6.2.0
 
 devDependencies:
   '@changesets/cli':
@@ -5946,9 +5946,9 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-deepmerge@5.0.0:
-    resolution: {integrity: sha512-K1V6dniogjom+6jsLCysv7y6/Hd04/a9DXiKFSr/7/Y6Ji+9fwFF8DzdncYNQ6VP6to8U9qbztQpIZKqYrtBgQ==}
-    engines: {node: '>=14'}
+  /ts-deepmerge@6.2.0:
+    resolution: {integrity: sha512-2qxI/FZVDPbzh63GwWIZYE7daWKtwXZYuyc8YNq0iTmMUwn4mL0jRLsp6hfFlgbdRSR4x2ppe+E86FnvEpN7Nw==}
+    engines: {node: '>=14.13.1'}
     dev: false
 
   /ts-interface-checker@0.1.13:
