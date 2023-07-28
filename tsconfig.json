@@ -16,7 +16,8 @@
     "strict": true,
     "strictNullChecks": true,
     "types": [
-      "node"
+      "node",
+      "jest"
     ]
   },
   "exclude": [

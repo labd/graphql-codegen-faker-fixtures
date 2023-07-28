@@ -34,6 +34,7 @@
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/plugin-helpers": "^5.0.0",
     "@labdigital/eslint-config-node": "^0.1.0",
+    "@types/jest": "^29.5.3",
     "@types/node": "^20.4.2",
     "graphql-tag": "^2.12.6",
     "prettier": "^3.0.0",
