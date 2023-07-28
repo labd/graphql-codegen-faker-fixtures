@@ -15,14 +15,14 @@
   },
   "packageManager": "pnpm@8.6.7",
   "scripts": {
-    "test": "jest --silent",
-    "start": "tsup --watch",
     "build": "tsup",
-    "lint": "eslint --max-warnings 0",
-    "format": "prettier \"**/*.{ts,tsx,md}\" --write",
-    "typecheck": "tsc --noEmit",
     "example:ts": "graphql-codegen --config example/codegen.ts",
-    "example:yml": "graphql-codegen --config example/codegen.yml"
+    "example:yml": "graphql-codegen --config example/codegen.yml",
+    "format": "prettier \"**/*.{ts,tsx,md}\" --write",
+    "lint": "eslint --max-warnings 0",
+    "start": "tsup --watch",
+    "test": "jest --silent",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "deepmerge-ts": "4.2.2",
