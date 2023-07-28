@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`typename should create a basic builder which includes a hardcoded __typename 1`] = `
+exports[`typename > should create a basic builder which includes a hardcoded __typename 1`] = `
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {

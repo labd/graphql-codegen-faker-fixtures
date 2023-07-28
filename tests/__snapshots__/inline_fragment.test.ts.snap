@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`inline_fragment should create a builder for a fragment that uses inline fragments 1`] = `
+exports[`inline_fragment > should create a builder for a fragment that uses inline fragments 1`] = `
 "
     export const fakeHouseHold = (override?:DeepPartial<types.HouseHoldFragment>):types.HouseHoldFragment => {
       const fixture:types.HouseHoldFragment = {

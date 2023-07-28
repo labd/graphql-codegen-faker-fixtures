@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`multi fragments on same object be able to deal with multiple fragments on same object 1`] = `
+exports[`multi fragments on same object > be able to deal with multiple fragments on same object 1`] = `
 "
     export const fakeHouseHoldA = (override?:DeepPartial<types.HouseHoldAFragment>):types.HouseHoldAFragment => {
       const fixture:types.HouseHoldAFragment = {

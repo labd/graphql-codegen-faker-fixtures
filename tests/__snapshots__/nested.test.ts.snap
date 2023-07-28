@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`nested should create a builder for a fragment that uses nested fields 1`] = `
+exports[`nested > should create a builder for a fragment that uses nested fields 1`] = `
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {

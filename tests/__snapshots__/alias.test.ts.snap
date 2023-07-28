@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`alias should create a builder using aliased fields 1`] = `
+exports[`alias > should create a builder using aliased fields 1`] = `
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`union should create a builder for a fragment that uses a union type 1`] = `
+exports[`union > should create a builder for a fragment that uses a union type 1`] = `
 "
     export const fakeCat = (override?:DeepPartial<types.CatFragment>):types.CatFragment => {
       const fixture:types.CatFragment = {

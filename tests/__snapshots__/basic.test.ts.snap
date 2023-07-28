@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`basic should create a basic builder for the person fragment 1`] = `
+exports[`basic > should create a basic builder for the person fragment 1`] = `
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {

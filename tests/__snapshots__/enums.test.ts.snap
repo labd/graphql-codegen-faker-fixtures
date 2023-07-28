@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`enums should create a builder for a fragment that uses an enum field 1`] = `
+exports[`enums > should create a builder for a fragment that uses an enum field 1`] = `
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        name: faker.lorem.words(),age: faker.lorem.words(),gender: faker.helpers.arrayElement(["MALE","FEMALE"])
+        name: faker.lorem.words(),age: faker.lorem.words(),gender: faker.helpers.arrayElement([\\"MALE\\",\\"FEMALE\\"])
       }
 
       return override
