@@ -1,16 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`typename it should create a basic builder which includes a hardcoded __typename 1`] = `
-"export const fakePerson = (
-  override?: DeepPartial<types.PersonFragment>
-): types.PersonFragment => {
-  const fixture: types.PersonFragment = {
-    __typename: "Person",
-    name: faker.commerce.productAdjective() + " " + faker.commerce.product(),
-    age: faker.lorem.words(),
-  };
-
-  return override ? merge(fixture, override) : fixture;
-};
+exports[`typename should create a basic builder which includes a hardcoded __typename 1`] = `
 "
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        __typename: 'Person',name: faker.lorem.words(),age: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
 `;

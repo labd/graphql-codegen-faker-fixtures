@@ -1,31 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`inline_fragment it should create a builder for a fragment that uses inline fragments 1`] = `
-"export const fakeHouseHold = (
-  override?: DeepPartial<types.HouseHoldFragment>
-): types.HouseHoldFragment => {
-  const fixture: types.HouseHoldFragment = {
-    person: {
-      name: faker.commerce.productAdjective() + " " + faker.commerce.product(),
-      age: faker.datatype.number(),
-    },
-    pet: {
-      ...faker.helpers.arrayElement([
-        {
-          name:
-            faker.commerce.productAdjective() + " " + faker.commerce.product(),
-          color: faker.color.human(),
-        },
-        {
-          name:
-            faker.commerce.productAdjective() + " " + faker.commerce.product(),
-          isGoodBoy: faker.datatype.boolean(),
-        },
-      ]),
-    },
-  };
-
-  return override ? merge(fixture, override) : fixture;
-};
+exports[`inline_fragment should create a builder for a fragment that uses inline fragments 1`] = `
 "
+    export const fakeHouseHold = (override?:DeepPartial<types.HouseHoldFragment>):types.HouseHoldFragment => {
+      const fixture:types.HouseHoldFragment = {
+        person: { name: faker.lorem.words(),age: faker.datatype.number() },pet: { ...faker.helpers.arrayElement([{name: faker.lorem.words(),color: faker.lorem.words()},{name: faker.lorem.words(),isGoodBoy: faker.datatype.boolean()}]) }
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
 `;

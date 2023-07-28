@@ -1,4 +1,4 @@
-import { plugin } from "../plugin";
+import { plugin } from "../dist";
 import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
 
@@ -47,7 +47,7 @@ const document = /* GraphQL */ `
 `;
 
 describe("inline_fragment", () => {
-  it("it should create a builder for a fragment that uses inline fragments", () => {
+  it("should create a builder for a fragment that uses inline fragments", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],

@@ -1,4 +1,4 @@
-import { plugin } from "../plugin";
+import { plugin } from "../dist";
 import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
 
@@ -24,7 +24,7 @@ const document = /* GraphQL */ `
 `;
 
 describe("enums", () => {
-  it("it should create a builder for a fragment that uses an enum field", () => {
+  it("should create a builder for a fragment that uses an enum field", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
@@ -32,7 +32,7 @@ describe("enums", () => {
     );
     expect(response).toMatchSnapshot();
     expect(response).toContain(
-      'gender: faker.helpers.arrayElement(["MALE", "FEMALE"])',
+      'gender: faker.helpers.arrayElement(["MALE","FEMALE"])',
     );
   });
 });

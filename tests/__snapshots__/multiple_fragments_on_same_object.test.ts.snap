@@ -1,29 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`multi fragments on same object it be able to deal with multiple fragments on same object 1`] = `
-"export const fakeHouseHoldA = (
-  override?: DeepPartial<types.HouseHoldAFragment>
-): types.HouseHoldAFragment => {
-  const fixture: types.HouseHoldAFragment = {
-    foo: faker.lorem.words(),
-    person: {
-      name: faker.commerce.productAdjective() + " " + faker.commerce.product(),
-      age: faker.lorem.words(),
-    },
-  };
-
-  return override ? merge(fixture, override) : fixture;
-};
-
-export const fakeHouseHoldB = (
-  override?: DeepPartial<types.HouseHoldBFragment>
-): types.HouseHoldBFragment => {
-  const fixture: types.HouseHoldBFragment = {
-    foo: faker.lorem.words(),
-    person: { age: faker.lorem.words(), gender: faker.lorem.words() },
-  };
-
-  return override ? merge(fixture, override) : fixture;
-};
+exports[`multi fragments on same object be able to deal with multiple fragments on same object 1`] = `
 "
+    export const fakeHouseHoldA = (override?:DeepPartial<types.HouseHoldAFragment>):types.HouseHoldAFragment => {
+      const fixture:types.HouseHoldAFragment = {
+        foo: faker.lorem.words(),person: { name: faker.lorem.words(),age: faker.lorem.words() }
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeHouseHoldB = (override?:DeepPartial<types.HouseHoldBFragment>):types.HouseHoldBFragment => {
+      const fixture:types.HouseHoldBFragment = {
+        foo: faker.lorem.words(),person: { age: faker.lorem.words(),gender: faker.lorem.words() }
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
 `;

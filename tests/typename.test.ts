@@ -1,4 +1,4 @@
-import { plugin } from "../plugin";
+import { plugin } from "../dist";
 import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
 
@@ -19,13 +19,13 @@ const document = /* GraphQL */ `
 `;
 
 describe("typename", () => {
-  it("it should create a basic builder which includes a hardcoded __typename", () => {
+  it("should create a basic builder which includes a hardcoded __typename", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
       { buildersOnly: true },
     );
     expect(response).toMatchSnapshot();
-    expect(response).toContain('__typename: "Person"');
+    expect(response).toContain("__typename: 'Person'");
   });
 });

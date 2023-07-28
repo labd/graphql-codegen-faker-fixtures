@@ -1,4 +1,4 @@
-import { plugin } from "../plugin";
+import { plugin } from "../dist";
 import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
 
@@ -21,7 +21,7 @@ const document = /* GraphQL */ `
 `;
 
 describe("arrays", () => {
-  it("it should create a builder for the person fragment that creates an array for its children field", () => {
+  it("should create a builder for the person fragment that creates an array for its children field", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],

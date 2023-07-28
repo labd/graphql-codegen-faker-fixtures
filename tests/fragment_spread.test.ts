@@ -1,4 +1,4 @@
-import { plugin } from "../plugin";
+import { plugin } from "../dist";
 import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
 
@@ -50,7 +50,7 @@ const document = /* GraphQL */ `
 `;
 
 describe("fragment_spread", () => {
-  it("it should create a builder for a fragment that uses fragment spreads", () => {
+  it("should create a builder for a fragment that uses fragment spreads", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],

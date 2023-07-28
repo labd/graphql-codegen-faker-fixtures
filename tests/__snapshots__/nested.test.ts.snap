@@ -1,16 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`nested it should create a builder for a fragment that uses nested fields 1`] = `
-"export const fakePerson = (
-  override?: DeepPartial<types.PersonFragment>
-): types.PersonFragment => {
-  const fixture: types.PersonFragment = {
-    name: faker.commerce.productAdjective() + " " + faker.commerce.product(),
-    age: faker.lorem.words(),
-    address: { street: faker.lorem.words(), city: faker.lorem.words() },
-  };
-
-  return override ? merge(fixture, override) : fixture;
-};
+exports[`nested should create a builder for a fragment that uses nested fields 1`] = `
 "
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        name: faker.lorem.words(),age: faker.lorem.words(),address: { street: faker.lorem.words(),city: faker.lorem.words() }
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
 `;

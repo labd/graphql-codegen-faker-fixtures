@@ -1,4 +1,4 @@
-import { plugin } from "../plugin";
+import { plugin } from "../dist";
 import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
 
@@ -34,7 +34,7 @@ const document = /* GraphQL */ `
 `;
 
 describe("multi fragments on same object", () => {
-  it("it be able to deal with multiple fragments on same object", () => {
+  it("be able to deal with multiple fragments on same object", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],

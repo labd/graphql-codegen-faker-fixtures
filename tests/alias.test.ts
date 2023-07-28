@@ -1,7 +1,7 @@
 import { parse } from "graphql";
 import { buildSchema } from "graphql/utilities";
 
-import { plugin } from "../plugin";
+import { plugin } from "../dist/index";
 
 const schema = /* GraphQL */ `
   type Person {
@@ -19,7 +19,7 @@ const document = /* GraphQL */ `
 `;
 
 describe("alias", () => {
-  it("it should create a builder using aliased fields", () => {
+  it("should create a builder using aliased fields", () => {
     const response = plugin(
       buildSchema(schema),
       [{ document: parse(document) }],
@@ -27,7 +27,7 @@ describe("alias", () => {
     );
     expect(response).toMatchSnapshot();
     expect(response).toContain(
-      'faker.commerce.productAdjective() + " " + faker.commerce.product(),',
+      "aliasedName: faker.lorem.words(),age: faker.lorem.words()",
     );
   });
 });

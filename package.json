@@ -20,13 +20,13 @@
     "build": "tsup",
     "lint": "eslint --max-warnings 0",
     "format": "prettier \"**/*.{ts,tsx,md}\" --write",
+    "typecheck": "tsc --noEmit",
     "example:ts": "graphql-codegen --config example/codegen.ts",
     "example:yml": "graphql-codegen --config example/codegen.yml"
   },
   "dependencies": {
     "deepmerge-ts": "4.2.2",
-    "graphql": "^16.7.1",
-    "ts-deepmerge": "5.0.0"
+    "graphql": "^16.7.1"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
@@ -39,6 +39,7 @@
     "graphql-tag": "^2.12.6",
     "jest": "^29.6.1",
     "prettier": "^3.0.0",
+    "ts-jest": "^29.1.1",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   }
