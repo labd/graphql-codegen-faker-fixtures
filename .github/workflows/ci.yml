@@ -1,4 +1,4 @@
-name: CI (Lint / Typecheck / Build / Test)
+name: CI (Lint / Build / Typecheck / Test)
 
 on:
   push:
@@ -43,11 +43,11 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Typecheck
-        run: pnpm typecheck
-
       - name: Build
         run: pnpm build
+
+      - name: Typecheck
+        run: pnpm typecheck
 
       - name: Test
         run: pnpm test
