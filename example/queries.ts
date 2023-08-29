@@ -2,19 +2,22 @@ import { gql } from "graphql-tag";
 
 export const address = gql`
   fragment address on Address {
-    id
-    firstName
-    lastName
     streetName
     streetNumber
     additionalStreetInfo
-    additionalAddressInfo
-    building
+    postalCode
     city
     region
-    postalCode
+    state
     country
-    phone
+    company
+    department
+    building
+    apartment
+    pOBox
+    additionalAddressInfo
+    externalId
+    key
   }
 `;
 
@@ -25,4 +28,27 @@ export const GET_ADDRESS = gql`
     }
   }
   ${address}
+`;
+
+export const person = gql`
+  fragment person on Person {
+    phone
+    mobile
+    email
+    fax
+    title
+    salutation
+    firstName
+    lastName
+    married
+  }
+`;
+
+export const GET_PERSON = gql`
+  query getPerson {
+    getPerson {
+      ...person
+    }
+  }
+  ${person}
 `;
