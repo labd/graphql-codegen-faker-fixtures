@@ -4,7 +4,7 @@ exports[`inline_fragment > should create a builder for a fragment that uses inli
 "
     export const fakeHouseHold = (override?:DeepPartial<types.HouseHoldFragment>):types.HouseHoldFragment => {
       const fixture:types.HouseHoldFragment = {
-        person: { name: faker.lorem.words(),age: faker.datatype.number() },pet: { ...faker.helpers.arrayElement([{name: faker.lorem.words(),color: faker.lorem.words()},{name: faker.lorem.words(),isGoodBoy: faker.datatype.boolean()}]) }
+        person: { name: faker.lorem.words(),age: faker.number.int() },pet: { ...faker.helpers.arrayElement([{name: faker.lorem.words(),color: faker.lorem.words()},{name: faker.lorem.words(),isGoodBoy: faker.datatype.boolean()}]) }
       }
 
       return override
