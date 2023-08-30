@@ -11,12 +11,18 @@ const config: CodegenConfig = {
         typeImport: "@types",
         fakerjsSeed: 98765,
         scalars: {
-          String: [
-            { lastName: "faker.person.lastName()" },
-            { firstName: "faker.person.firstName()" },
-            { phone: "faker.phone.number()" },
-          ],
-          Boolean: [{ married: "faker.helpers.arrayElement(['yes', 'no'])" }],
+          String: {
+            firstName: {
+              default: "faker.internet.email()",
+              field: "faker.person.firstName()",
+              object: {
+                Person: "faker.animal.type()",
+              },
+            },
+            lastName: "faker.person.lastName()",
+            phone: "faker.phone.number()",
+          },
+          Boolean: { married: "faker.helpers.arrayElement(['yes', 'no'])" },
         },
       },
     },

@@ -218,20 +218,20 @@ const collectFragments = (
         const collectedField: Field | undefined =
           fieldName === "__typename"
             ? // We have encountered a '__typename' field.
-              // These are special as they should have a hardcoded value: objectName
-              {
-                fieldType: "__typename",
-                fieldName: "__typename",
-                objectName: objectName,
-              }
+            // These are special as they should have a hardcoded value: objectName
+            {
+              fieldType: "__typename",
+              fieldName: "__typename",
+              objectName: objectName,
+            }
             : // field was not a __typename.
-              // Let's see if we can find the Field we have collected earlier.
-              // It should contain more info on its type.
-              collectedFields.find(
-                (collectedField) =>
-                  collectedField.objectName === objectName &&
-                  collectedField.fieldName === fieldName,
-              );
+            // Let's see if we can find the Field we have collected earlier.
+            // It should contain more info on its type.
+            collectedFields.find(
+              (collectedField) =>
+                collectedField.objectName === objectName &&
+                collectedField.fieldName === fieldName,
+            );
 
         if (!collectedField) {
           throw new Error(
@@ -331,10 +331,10 @@ const createFragmentBuilder = (
       export const fake${pascalCased} = ():${typeName} =>
         faker.helpers.arrayElement([
           ${fragment.fields
-            .filter((field) => field.spreadName)
-            .map((field) => toPascalCase(field.spreadName || ""))
-            .map((pascalCased) => `fake${pascalCased}()`)
-            .join(",")}
+        .filter((field) => field.spreadName)
+        .map((field) => toPascalCase(field.spreadName || ""))
+        .map((pascalCased) => `fake${pascalCased}()`)
+        .join(",")}
         ])
     `;
   }
@@ -343,12 +343,12 @@ const createFragmentBuilder = (
     export const fake${pascalCased} = (override?:${partialTypeName}):${typeName} => {
       const fixture:${typeName} = {
         ${createFakerFields(
-          fragment.fields,
-          enums,
-          pascalCased,
-          skipFields,
-          scalars,
-        )}
+    fragment.fields,
+    enums,
+    pascalCased,
+    skipFields,
+    scalars,
+  )}
       }
 
       return override
@@ -466,19 +466,27 @@ const findFakerMethodOfScalar = (
   field: Field,
   config?: ScalarsConfig,
 ) => {
-  if (config?.[scalar]?.length || 0 > 0) {
-    const customField = config?.[scalar]?.find(
-      (scalarConfig) => field.fieldName in scalarConfig,
-    );
-    if (customField) {
-      return customField[field.fieldName];
+  let defaultFieldMethod: string = defaultMethod;
+  const fieldConfig = config?.[scalar]?.[field.fieldName];
+
+  if (typeof fieldConfig === "string") {
+    return fieldConfig;
+  } else if (typeof fieldConfig === "object" && fieldConfig !== null) {
+    if ("object" in fieldConfig && fieldConfig.object?.[field.objectName]) {
+      return fieldConfig.object?.[field.objectName];
     }
+    if ("default" in fieldConfig && fieldConfig.default) {
+      defaultFieldMethod = fieldConfig.default;
+    }
+    return fieldConfig.field || defaultFieldMethod;
   }
-  return defaultMethod;
+
+  return defaultFieldMethod;
 };
 
 // prettier-ignore
 const createFakerMethod = (field: Field, enums: Enum[], scalars?: ScalarsConfig) => {
+  console.log(field, scalars)
   switch (field.fieldType) {
     case 'Int':
       return findFakerMethodOfScalar('Int', 'faker.number.int()', field, scalars)

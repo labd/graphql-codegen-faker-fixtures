@@ -4,7 +4,17 @@ import { PluginFunction } from "@graphql-codegen/plugin-helpers";
 const scalars = ["Boolean", "Float", "ID", "Int", "String"] as const;
 type Scalar = (typeof scalars)[number];
 
-export type ScalarsConfig = Partial<Record<Scalar, Record<string, string>[]>>;
+type FieldConfig =
+  | string
+  | Partial<{
+    default: string;
+    field: string;
+    object: Record<string, string>;
+  }>;
+
+export type ScalarsConfig = Partial<
+  Record<Scalar, Record<string, FieldConfig>>
+>;
 
 /**
  * Config is being set through the config property in codegen.yml
