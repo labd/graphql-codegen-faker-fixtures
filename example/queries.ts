@@ -2,6 +2,7 @@ import { gql } from "graphql-tag";
 
 export const address = gql`
   fragment address on Address {
+    id
     streetName
     streetNumber
     additionalStreetInfo
@@ -32,6 +33,7 @@ export const GET_ADDRESS = gql`
 
 export const person = gql`
   fragment person on Person {
+    id
     phone
     mobile
     email

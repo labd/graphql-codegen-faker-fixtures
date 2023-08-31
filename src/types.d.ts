@@ -4,16 +4,8 @@ import { PluginFunction } from "@graphql-codegen/plugin-helpers";
 const scalars = ["Boolean", "Float", "ID", "Int", "String"] as const;
 type Scalar = (typeof scalars)[number];
 
-type FieldConfig =
-  | string
-  | Partial<{
-    default: string;
-    field: string;
-    object: Record<string, string>;
-  }>;
-
 export type ScalarsConfig = Partial<
-  Record<Scalar, Record<string, FieldConfig>>
+  Record<Scalar, Record<string, string> & { _default?: string }>
 >;
 
 /**

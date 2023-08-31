@@ -466,19 +466,31 @@ const findFakerMethodOfScalar = (
   field: Field,
   config?: ScalarsConfig,
 ) => {
-  let defaultFieldMethod: string = defaultMethod;
-  const fieldConfig = config?.[scalar]?.[field.fieldName];
+  const scalarConfig = config?.[scalar];
+  const defaultFieldMethod = config?.[scalar]?._default || defaultMethod;
 
-  if (typeof fieldConfig === "string") {
-    return fieldConfig;
-  } else if (typeof fieldConfig === "object" && fieldConfig !== null) {
-    if ("object" in fieldConfig && fieldConfig.object?.[field.objectName]) {
-      return fieldConfig.object?.[field.objectName];
+  if (!scalarConfig) {
+    return defaultFieldMethod;
+  }
+
+  if (`${field.objectName}.${field.fieldName}` in scalarConfig) {
+    if (
+      typeof scalarConfig[`${field.objectName}.${field.fieldName}`] !== "string"
+    ) {
+      throw Error(
+        `Configuration error: value of ${field.objectName}.${field.fieldName} in ${scalar} is not of type "string".`,
+      );
     }
-    if ("default" in fieldConfig && fieldConfig.default) {
-      defaultFieldMethod = fieldConfig.default;
+    return scalarConfig[`${field.objectName}.${field.fieldName}`];
+  }
+
+  if (field.fieldName in scalarConfig) {
+    if (typeof scalarConfig[field.fieldName] !== "string") {
+      throw Error(
+        `Configuration error: value of ${field.fieldName} in ${scalar} is not of type "string".`,
+      );
     }
-    return fieldConfig.field || defaultFieldMethod;
+    return scalarConfig[field.fieldName];
   }
 
   return defaultFieldMethod;
@@ -486,7 +498,6 @@ const findFakerMethodOfScalar = (
 
 // prettier-ignore
 const createFakerMethod = (field: Field, enums: Enum[], scalars?: ScalarsConfig) => {
-  console.log(field, scalars)
   switch (field.fieldType) {
     case 'Int':
       return findFakerMethodOfScalar('Int', 'faker.number.int()', field, scalars)

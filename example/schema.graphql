@@ -19,6 +19,7 @@ type Address {
 }
 
 type Person {
+  id: ID!
   phone: String
   mobile: String
   email: String

@@ -12,17 +12,16 @@ const config: CodegenConfig = {
         fakerjsSeed: 98765,
         scalars: {
           String: {
-            firstName: {
-              default: "faker.internet.email()",
-              field: "faker.person.firstName()",
-              object: {
-                Person: "faker.animal.type()",
-              },
-            },
+            _default: "faker.lorem.word()",
+            firstName: "faker.person.firstName()",
             lastName: "faker.person.lastName()",
             phone: "faker.phone.number()",
           },
           Boolean: { married: "faker.helpers.arrayElement(['yes', 'no'])" },
+          ID: {
+            id: "faker.string.symbol()",
+            ["Person.id"]: "faker.string.nanoid()",
+          },
         },
       },
     },
