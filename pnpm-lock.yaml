@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.1(graphql@16.7.1)
   '@labdigital/eslint-config-node':
-    specifier: ^0.1.0
-    version: 0.1.0(eslint@8.45.0)(typescript@5.2.2)
+    specifier: ^0.2.0
+    version: 0.2.0(eslint@8.45.0)(typescript@5.2.2)
   '@types/jest':
     specifier: ^29.5.3
     version: 29.5.3
@@ -1232,8 +1232,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@labdigital/eslint-config-node@0.1.0(eslint@8.45.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-jItZi3/BVuj84tPQIQKFjae6lxXLjHndE55VafAwkp5bSxjR1oFqfnCzKw72koAuYMBnSlGemHmpboflviyCeQ==}
+  /@labdigital/eslint-config-node@0.2.0(eslint@8.45.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-IjzDT4e/i3T28tEzowX8CqrX1IDgat2t3gu2ihaOVbiw7E8xLYEUN8sujmKZfhGLbZpqOnNUab9CpczlO435iA==}
     peerDependencies:
       eslint: '8'
       typescript: '4'
