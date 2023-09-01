@@ -19,3 +19,6 @@ generates:
         ID:
           id: faker.string.symbol()
           Person.id: faker.string.nanoid()
+hooks:
+  afterOneFileWrite:
+    - prettier --write
