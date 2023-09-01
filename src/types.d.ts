@@ -27,7 +27,7 @@ type PluginConfig = {
    */
   typeImport?: string;
   /**
-   * skldfjakldjfklasjdkfljaksldf
+   * Override fields with custom faker methods?
    */
   scalars?: ScalarsConfig;
   /**
