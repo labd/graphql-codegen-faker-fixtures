@@ -26,7 +26,7 @@ exports[`fragment_spread > should create a builder for a fragment that uses frag
 
     export const fakeHouseHold = (override?:DeepPartial<types.HouseHoldFragment>):types.HouseHoldFragment => {
       const fixture:types.HouseHoldFragment = {
-        person: { name: faker.lorem.words(),age: faker.datatype.number() },pet: { ...faker.helpers.arrayElement([fakeCat(),fakeDog()]) }
+        person: { name: faker.lorem.words(),age: faker.number.int() },pet: { ...faker.helpers.arrayElement([fakeCat(),fakeDog()]) }
       }
 
       return override

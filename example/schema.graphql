@@ -1,10 +1,10 @@
 type Address {
-  id: String
-  streetName: String
-  streetNumber: String
+  id: ID!
+  streetName: String!
+  streetNumber: String!
   additionalStreetInfo: String
-  postalCode: String
-  city: String
+  postalCode: String!
+  city: String!
   region: String
   state: String
   country: String!
@@ -14,18 +14,24 @@ type Address {
   apartment: String
   pOBox: String
   additionalAddressInfo: String
-  externalId: String
+  externalId: ID
   key: String
+}
+
+type Person {
+  id: ID!
   phone: String
   mobile: String
   email: String
   fax: String
   title: String
   salutation: String
-  firstName: String
-  lastName: String
+  firstName: String!
+  lastName: String!
+  married: Boolean
 }
 
 type Query {
   getAddress: Address!
+  getPerson: Person!
 }

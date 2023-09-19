@@ -1,0 +1,290 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`configuration > should be able to override faker methods according to specific configurations 1`] = `
+"
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: myCustomDefaultIdStringFakerMethod(),name: myCustomPersonNameFakerMethod(),age: faker.number.int(),address: myCustomDefaultStringFakerMethod()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: myCustomDefaultIdStringFakerMethod(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: myCustomDefaultStringFakerMethod()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to override faker methods for specific field for String scalar 1`] = `
+"
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to override faker methods for specific field on specific object for String scalar 1`] = `
+"
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to override faker seed 1`] = `
+"
+    /* NOTE: This file is auto-generated. DO NOT EDIT. */
+  
+
+import * as types from 'CONFIGURE_TYPE_IMPORT';
+import { deepmergeCustom } from 'deepmerge-ts'
+import { faker } from '@faker-js/faker';
+
+
+      export type DeepPartial<T> = T extends object
+        ? { [P in keyof T]?: DeepPartial<T[P]> }
+        : T
+
+      export const repeat = <T>(numTimes: number, callback: () => T) =>
+        Array.from(Array(numTimes).keys()).map(() => callback())
+
+      const deepmerge = deepmergeCustom({ mergeArrays: false })
+      export const merge = <T>(fixture: T, override: unknown) =>
+        deepmerge(fixture, override) as T
+
+      export const random = (min: number, max: number) => faker.number.int({ min, max })
+
+      faker.seed(56765)
+  
+
+
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to override the default faker method for String scalar 1`] = `
+"
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: faker.string.uuid(),name: myCustomStringFakerMethod(),age: faker.number.int(),address: myCustomStringFakerMethod()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),name: myCustomStringFakerMethod(),age: faker.number.int(),address: myCustomStringFakerMethod()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to set location of the type import 1`] = `
+"
+    /* NOTE: This file is auto-generated. DO NOT EDIT. */
+  
+
+import * as types from '@types';
+import { deepmergeCustom } from 'deepmerge-ts'
+import { faker } from '@faker-js/faker';
+
+
+      export type DeepPartial<T> = T extends object
+        ? { [P in keyof T]?: DeepPartial<T[P]> }
+        : T
+
+      export const repeat = <T>(numTimes: number, callback: () => T) =>
+        Array.from(Array(numTimes).keys()).map(() => callback())
+
+      const deepmerge = deepmergeCustom({ mergeArrays: false })
+      export const merge = <T>(fixture: T, override: unknown) =>
+        deepmerge(fixture, override) as T
+
+      export const random = (min: number, max: number) => faker.number.int({ min, max })
+
+      faker.seed(12345654321)
+  
+
+
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to skip fields 1`] = `
+"
+    /* NOTE: This file is auto-generated. DO NOT EDIT. */
+  
+
+import * as types from 'CONFIGURE_TYPE_IMPORT';
+import { deepmergeCustom } from 'deepmerge-ts'
+import { faker } from '@faker-js/faker';
+
+
+      export type DeepPartial<T> = T extends object
+        ? { [P in keyof T]?: DeepPartial<T[P]> }
+        : T
+
+      export const repeat = <T>(numTimes: number, callback: () => T) =>
+        Array.from(Array(numTimes).keys()).map(() => callback())
+
+      const deepmerge = deepmergeCustom({ mergeArrays: false })
+      export const merge = <T>(fixture: T, override: unknown) =>
+        deepmerge(fixture, override) as T
+
+      export const random = (min: number, max: number) => faker.number.int({ min, max })
+
+      faker.seed(12345654321)
+  
+
+
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: faker.string.uuid(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to skip fragments 1`] = `
+"
+    /* NOTE: This file is auto-generated. DO NOT EDIT. */
+  
+
+import * as types from 'CONFIGURE_TYPE_IMPORT';
+import { deepmergeCustom } from 'deepmerge-ts'
+import { faker } from '@faker-js/faker';
+
+
+      export type DeepPartial<T> = T extends object
+        ? { [P in keyof T]?: DeepPartial<T[P]> }
+        : T
+
+      export const repeat = <T>(numTimes: number, callback: () => T) =>
+        Array.from(Array(numTimes).keys()).map(() => callback())
+
+      const deepmerge = deepmergeCustom({ mergeArrays: false })
+      export const merge = <T>(fixture: T, override: unknown) =>
+        deepmerge(fixture, override) as T
+
+      export const random = (min: number, max: number) => faker.number.int({ min, max })
+
+      faker.seed(12345654321)
+  
+
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
