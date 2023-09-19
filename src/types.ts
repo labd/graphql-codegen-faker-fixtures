@@ -2,7 +2,7 @@ import { CodegenConfig as DefaultCodegenConfig } from "@graphql-codegen/cli";
 import { PluginFunction } from "@graphql-codegen/plugin-helpers";
 
 const scalars = ["Boolean", "Float", "ID", "Int", "String"] as const;
-type Scalar = (typeof scalars)[number];
+export type Scalar = (typeof scalars)[number];
 
 export type ScalarsConfig = Partial<
   Record<Scalar, Record<string, string> & { _default?: string }>
@@ -11,7 +11,7 @@ export type ScalarsConfig = Partial<
 /**
  * Config is being set through the config property in codegen.yml
  */
-type PluginConfig = {
+export type PluginConfig = {
   /**
    * When true: plugin returns the builders-only, and skips disclaimer, utils, etc.
    * Very useful when (unit-)testing this plugin
