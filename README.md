@@ -148,11 +148,11 @@ scalars: {
     String: {
         // Override the default method for the String scalar
         _default: "faker.lorem.word()"
-        // Override a specific field name for the String scalar
+        // Provide a faker method for a specific field name for the String scalar
         firstName: "faker.person.firstName()"
     },
     ID: {
-        // Override a specific field name and type for the ID scalar
+        // Provide a faker method for a specific field name and type for the ID scalar
         ["Person.id"]: "faker.string.nanoid()",
     }
 }
