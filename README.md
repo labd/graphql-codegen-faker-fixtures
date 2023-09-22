@@ -61,7 +61,8 @@ export default config;
 ```
 
 <details>
-    <summary>Example in `yml` format</summary>
+    <summary>Example in <code>yml</code> format</summary>
+
     ```yaml
     schema: example/schema.graphql
     documents: example/queries.ts
@@ -88,8 +89,8 @@ export default config;
       afterOneFileWrite:
         - prettier --write
     ```
+
 </details>
-<br>
 
 The example above and a copy in `yml` format can be found in the /examle directory and can be run with `pnpm example:ts` and `pnpm example:yml` respectively.
 
