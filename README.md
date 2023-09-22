@@ -63,6 +63,7 @@ export default config;
 <details>
     <summary>Example in <code>yml</code> format</summary>
 
+    ### Example
     ```yml
     schema: example/schema.graphql
     documents: example/queries.ts
