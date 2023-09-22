@@ -61,34 +61,34 @@ export default config;
 ```
 
 <details>
-    <summary>Example in yml format</summary>
+<summary>Example in <code>yml</code> format</summary>
 
-    ```yml
-    schema: example/schema.graphql
-    documents: example/queries.ts
-    verbose: true
-    generates:
-      example/fixture_builders.ts:
-        plugins:
-          - dist/index.js
-        config:
-          typeImport: "@types"
-          fakerjsSeed: 98765
-          scalars:
-            String:
-              _default: faker.lorem.word()
-              firstName: faker.person.firstName()
-              lastName: faker.person.lastName()
-              phone: faker.phone.number()
-            Boolean:
-              married: faker.helpers.arrayElement(['yes', 'no'])
-            ID:
-              id: faker.string.symbol()
-              Person.id: faker.string.nanoid()
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
-    ```
+```yml
+schema: example/schema.graphql
+documents: example/queries.ts
+verbose: true
+generates:
+  example/fixture_builders.ts:
+    plugins:
+      - dist/index.js
+    config:
+      typeImport: "@types"
+      fakerjsSeed: 98765
+      scalars:
+        String:
+          _default: faker.lorem.word()
+          firstName: faker.person.firstName()
+          lastName: faker.person.lastName()
+          phone: faker.phone.number()
+        Boolean:
+          married: faker.helpers.arrayElement(['yes', 'no'])
+        ID:
+          id: faker.string.symbol()
+          Person.id: faker.string.nanoid()
+hooks:
+  afterOneFileWrite:
+    - prettier --write
+```
 
 </details>
 
