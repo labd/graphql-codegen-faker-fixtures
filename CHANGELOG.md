@@ -1,5 +1,11 @@
 # graphql-codegen-faker-fixtures
 
+## 0.2.1
+
+### Patch Changes
+
+- 8646d19: add @graphql-codegen/cli as peer dependency
+
 ## 0.2.0
 
 ### Minor Changes
