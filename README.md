@@ -32,7 +32,7 @@ const config: CodegenConfig = {
   documents: "example/queries.ts",
   generates: {
     "example/fixture_builders.ts": {
-      plugins: ["dist/index.js"],
+      plugins: ["graphql-codegen-faker-fixtures"],
       config: {
         typeImport: "@types",
         fakerjsSeed: 98765,
@@ -70,7 +70,7 @@ verbose: true
 generates:
   example/fixture_builders.ts:
     plugins:
-      - dist/index.js
+      - graphql-codegen-faker-fixtures
     config:
       typeImport: "@types"
       fakerjsSeed: 98765
