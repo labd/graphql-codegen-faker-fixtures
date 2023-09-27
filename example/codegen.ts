@@ -11,6 +11,10 @@ const config: CodegenConfig = {
         typeImport: "@types",
         fakerjsSeed: 98765,
         scalars: {
+          Email: {
+            _default: "faker.internet.email()",
+            secondaryEmail: "faker.internet.exampleEmail()",
+          },
           String: {
             _default: "faker.lorem.word()",
             firstName: "faker.person.firstName()",

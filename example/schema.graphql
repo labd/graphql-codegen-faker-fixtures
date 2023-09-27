@@ -1,3 +1,5 @@
+scalar Email
+
 type Address {
   id: ID!
   streetName: String!
@@ -22,7 +24,8 @@ type Person {
   id: ID!
   phone: String
   mobile: String
-  email: String
+  email: Email
+  secondaryEmail: Email
   fax: String
   title: String
   salutation: String

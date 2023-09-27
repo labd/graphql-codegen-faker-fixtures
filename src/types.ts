@@ -1,11 +1,8 @@
 import { CodegenConfig as DefaultCodegenConfig } from "@graphql-codegen/cli";
 import { PluginFunction } from "@graphql-codegen/plugin-helpers";
 
-const scalars = ["Boolean", "Float", "ID", "Int", "String"] as const;
-export type Scalar = (typeof scalars)[number];
-
 export type ScalarsConfig = Partial<
-  Record<Scalar, Record<string, string> & { _default?: string }>
+  Record<string, Record<string, string> & { _default?: string }>
 >;
 
 /**

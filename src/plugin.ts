@@ -22,7 +22,6 @@ import {
   Union,
   Plugin,
   PluginConfig,
-  Scalar,
   ScalarsConfig,
 } from "./types";
 
@@ -461,7 +460,7 @@ const createFakerValue = (
 };
 
 const findFakerMethodOfScalar = (
-  scalar: Scalar,
+  scalar: string,
   defaultMethod: string,
   field: Field,
   config?: ScalarsConfig,
@@ -496,23 +495,33 @@ const findFakerMethodOfScalar = (
   return defaultFieldMethod;
 };
 
+const findFieldAsExistingEnum = (field: Field, enums: Enum[]) => {
+  return enums.find((myEnum) => myEnum.enumName === field.fieldType);
+};
+
+const findDefaultFakerMethodForScalar = (scalar: string) => {
+  switch (scalar) {
+    case "Int":
+      return "faker.number.int()";
+    case "Float":
+      return "faker.number.float()";
+    case "Boolean":
+      return "faker.datatype.boolean()";
+    case "ID":
+      return "faker.string.uuid()";
+    case "String":
+    default:
+      return "faker.lorem.words()";
+  }
+};
+
 // prettier-ignore
 const createFakerMethod = (field: Field, enums: Enum[], scalars?: ScalarsConfig) => {
-  switch (field.fieldType) {
-    case 'Int':
-      return findFakerMethodOfScalar('Int', 'faker.number.int()', field, scalars)
-    case 'Float':
-      return findFakerMethodOfScalar('Float', 'faker.number.float()', field, scalars)
-    case 'Boolean':
-      return findFakerMethodOfScalar('Boolean', 'faker.datatype.boolean()', field, scalars)
-    case 'ID':
-      return findFakerMethodOfScalar('ID', 'faker.string.uuid()', field, scalars)
-    case 'String':
-      return findFakerMethodOfScalar('String', 'faker.lorem.words()', field, scalars)
-    default:
-      const myEnum = enums.find((myEnum) => myEnum.enumName === field.fieldType)
-      return myEnum
-        ? `faker.helpers.arrayElement(${JSON.stringify(myEnum.enumValues)})`
-        : undefined
+  const myEnum = findFieldAsExistingEnum(field, enums)
+
+  if (myEnum) {
+    return `faker.helpers.arrayElement(${JSON.stringify(myEnum.enumValues)})`
+  } else {
+    return findFakerMethodOfScalar(field.fieldType, findDefaultFakerMethodForScalar(field.fieldType), field, scalars);
   }
 }
