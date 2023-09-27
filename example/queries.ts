@@ -37,6 +37,7 @@ export const person = gql`
     phone
     mobile
     email
+    secondaryEmail
     fax
     title
     salutation

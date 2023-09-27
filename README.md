@@ -37,6 +37,10 @@ const config: CodegenConfig = {
         typeImport: "@types",
         fakerjsSeed: 98765,
         scalars: {
+          Email: {
+            _default: "faker.internet.email()",
+            secondaryEmail: "faker.internet.exampleEmail()",
+          },
           String: {
             _default: "faker.lorem.word()",
             firstName: "faker.person.firstName()",
@@ -75,6 +79,9 @@ generates:
       typeImport: "@types"
       fakerjsSeed: 98765
       scalars:
+        Email:
+          _default: faker.internet.email()
+          secondaryEmail: faker.internet.exampleEmail()
         String:
           _default: faker.lorem.word()
           firstName: faker.person.firstName()
@@ -133,13 +140,14 @@ skipFragments: ['person'],
 
 Override default faker methods for a given scalar type. The default methods and configured scalar are:
 
-| Scalar    | Default faker method       |
-| --------- | -------------------------- |
-| `Int`     | `faker.number.int()`       |
-| `Float`   | `faker.number.float()`     |
-| `Boolean` | `faker.datatype.boolean()` |
-| `ID`      | `faker.string.uuid()`      |
-| `String`  | `faker.lorem.words()`      |
+| Scalar        | Default faker method       |
+| ------------- | -------------------------- |
+| `Int`         | `faker.number.int()`       |
+| `Float`       | `faker.number.float()`     |
+| `Boolean`     | `faker.datatype.boolean()` |
+| `ID`          | `faker.string.uuid()`      |
+| `String`      | `faker.lorem.words()`      |
+| custom scalar | `faker.lorem.words()`      |
 
 Overriding a faker methods:
 
