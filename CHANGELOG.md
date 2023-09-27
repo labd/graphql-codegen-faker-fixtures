@@ -1,5 +1,11 @@
 # graphql-codegen-faker-fixtures
 
+## 0.3.0
+
+### Minor Changes
+
+- af414f2: add support for custom scalars
+
 ## 0.2.1
 
 ### Patch Changes
