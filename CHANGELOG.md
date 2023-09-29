@@ -1,5 +1,15 @@
 # graphql-codegen-faker-fixtures
 
+## 0.5.0
+
+### Minor Changes
+
+- f64bd1d: supply repeat utility function callback with index
+
+### Patch Changes
+
+- 126c864: correct merge of custom plugin config type with codegen config type
+
 ## 0.4.0
 
 ### Minor Changes
