@@ -39,7 +39,7 @@ export type PluginConfig = {
 
 export type CodegenConfig = DefaultCodegenConfig & {
   generates: {
-    [outputpath: string]: {
+    [outputpath: string]: DefaultCodegenConfig["generates"][string] & {
       config: PluginConfig;
     };
   };
