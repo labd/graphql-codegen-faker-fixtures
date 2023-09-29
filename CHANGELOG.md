@@ -1,5 +1,11 @@
 # graphql-codegen-faker-fixtures
 
+## 0.6.0
+
+### Minor Changes
+
+- 6158c53: add namingconvention support
+
 ## 0.5.1
 
 ### Patch Changes
