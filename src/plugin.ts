@@ -65,8 +65,8 @@ export const plugin: Plugin = (
         ? { [P in keyof T]?: DeepPartial<T[P]> }
         : T
 
-      export const repeat = <T>(numTimes: number, callback: () => T) =>
-        Array.from(Array(numTimes).keys()).map(() => callback())
+      export const repeat = <T>(numTimes: number, callback: (i: number) => T) =>
+        Array.from(Array(numTimes).keys()).map((i) => callback(i))
 
       const deepmerge = deepmergeCustom({ mergeArrays: false })
       export const merge = <T>(fixture: T, override: unknown) =>
