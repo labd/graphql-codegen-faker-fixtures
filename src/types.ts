@@ -5,6 +5,21 @@ export type ScalarsConfig = Partial<
   Record<string, Record<string, string> & { _default?: string }>
 >;
 
+const caseTypes = [
+  "camelCase",
+  "capitalCase",
+  "constantCase",
+  "dotCase",
+  "headerCase",
+  "noCase",
+  "paramCase",
+  "pascalCase",
+  "pathCase",
+  "sentenceCase",
+  "snakeCase",
+] as const;
+type CaseType = (typeof caseTypes)[number];
+
 /**
  * Config is being set through the config property in codegen.yml
  */
@@ -35,6 +50,10 @@ export type PluginConfig = {
    * Should we skip whole fragments? Notation is like: deliveryMethodInfo
    */
   skipFragments?: string[];
+  /*
+   * Keep all GraphQL names as-is, or modify with a change-case-all method?
+   */
+  namingConvention?: "keep" | `change-case-all#${CaseType}`;
 };
 
 export type CodegenConfig = DefaultCodegenConfig & {

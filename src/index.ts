@@ -1,2 +1,2 @@
-export * from "./plugin";
-export type * from "./types";
+export { plugin } from "./plugin";
+export type { CodegenConfig } from "./types";

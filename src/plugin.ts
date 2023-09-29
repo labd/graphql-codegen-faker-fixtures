@@ -1,19 +1,16 @@
-import {
+import type {
   ASTNode,
   DocumentNode,
   EnumTypeDefinitionNode,
   InterfaceTypeDefinitionNode,
-  Kind,
   ListTypeNode,
   NamedTypeNode,
   NonNullTypeNode,
   ObjectTypeDefinitionNode,
-  parse,
-  printSchema,
   SelectionSetNode,
   UnionTypeDefinitionNode,
-  visit,
 } from "graphql";
+import { Kind, parse, printSchema, visit } from "graphql";
 import {
   Enum,
   Field,
@@ -22,14 +19,16 @@ import {
   Union,
   Plugin,
   PluginConfig,
-  ScalarsConfig,
 } from "./types";
+import { resolveExternalModuleAndFn } from "@graphql-codegen/plugin-helpers";
 
 // This plugin was generated with the help of ast explorer.
 // https://astexplorer.net
 // Paste your graphql schema in it, and you'll be able to see what the `astNode` will look like
 // The tool is awesome, you should check it out :-)
 // Pro-tip: play around with some TypeScript-code too!
+
+let pluginConfig: PluginConfig;
 
 /**
  * The entry-point called from graphql-codegen
@@ -41,11 +40,13 @@ import {
  * 3. Write typescript based on gathered info in step 2.
  *
  */
-export const plugin: Plugin = (
-  schema,
-  documents,
-  { typeImport, skipFragments, skipFields, buildersOnly, fakerjsSeed, scalars },
-) => {
+export const plugin: Plugin = (schema, documents, config) => {
+  // -------------------------------------------
+  // Make the plugin config easilty accessible througout the file.
+  // -------------------------------------------
+  pluginConfig = config;
+  const { typeImport, skipFragments, buildersOnly, fakerjsSeed } = pluginConfig;
+
   // -------------------------------------------
   // We define some helpers and imports.
   // -------------------------------------------
@@ -100,9 +101,7 @@ export const plugin: Plugin = (
   // Create all fragment-builders using the information we have collected earlier.
   const code = fragments
     .filter((fragment) => !skipFragments?.includes(fragment.fragmentName))
-    .map((fragment) =>
-      createFragmentBuilder(fragment, enums, unions, skipFields, scalars),
-    )
+    .map((fragment) => createFragmentBuilder(fragment, enums, unions))
     .join("\n");
 
   // Combine all the things in a nice prettified file
@@ -301,11 +300,24 @@ const collectFragments = (
 };
 
 /**
- * Creates a PascalCased fragmentName. E.g.  "productCategory" becomes ProductCategory
+ * Creates a cased fragmentName based on the given `namingConvention`.
+ * `change-case-all#pascalCased` by default.
  */
-const toPascalCase = (fragmentName: string) =>
-  fragmentName[0].toUpperCase() + fragmentName.slice(1);
+const convertToCorrectCaseType = (fragmentName: string): string => {
+  const { namingConvention } = pluginConfig;
 
+  if (!namingConvention) {
+    return resolveExternalModuleAndFn("change-case-all#pascalCase")(
+      fragmentName,
+    );
+  }
+
+  if (namingConvention === "keep") {
+    return fragmentName;
+  }
+
+  return resolveExternalModuleAndFn(namingConvention)(fragmentName);
+};
 /**
  * Creates the actual fragment-factory
  */
@@ -313,12 +325,10 @@ const createFragmentBuilder = (
   fragment: Fragment,
   enums: Enum[],
   unions: Union[],
-  skipFields?: string[],
-  scalars?: PluginConfig["scalars"],
 ) => {
   const name = fragment.fragmentName;
-  const pascalCased = toPascalCase(name);
-  const typeName = `types.${pascalCased}Fragment`;
+  const casedName = convertToCorrectCaseType(name);
+  const typeName = `types.${casedName}Fragment`;
   const partialTypeName = `DeepPartial<${typeName}>`;
 
   const isUnion = unions.some(
@@ -327,27 +337,21 @@ const createFragmentBuilder = (
 
   if (isUnion) {
     return `
-      export const fake${pascalCased} = ():${typeName} =>
+      export const fake${casedName} = ():${typeName} =>
         faker.helpers.arrayElement([
           ${fragment.fields
         .filter((field) => field.spreadName)
-        .map((field) => toPascalCase(field.spreadName || ""))
-        .map((pascalCased) => `fake${pascalCased}()`)
+        .map((field) => convertToCorrectCaseType(field.spreadName || ""))
+        .map((casedName) => `fake${casedName}()`)
         .join(",")}
         ])
     `;
   }
 
   return `
-    export const fake${pascalCased} = (override?:${partialTypeName}):${typeName} => {
+    export const fake${casedName} = (override?:${partialTypeName}):${typeName} => {
       const fixture:${typeName} = {
-        ${createFakerFields(
-    fragment.fields,
-    enums,
-    pascalCased,
-    skipFields,
-    scalars,
-  )}
+        ${createFakerFields(fragment.fields, enums, casedName)}
       }
 
       return override
@@ -363,12 +367,11 @@ const createFragmentBuilder = (
 const createFakerFields = (
   fields: FragmentField[],
   enums: Enum[],
-  pascalCased: string,
-  skipFields?: string[],
-  scalars?: PluginConfig["scalars"],
+  casedName: string,
 ) => {
+  const { skipFields } = pluginConfig;
   const shouldSkipField = (fieldName: string) =>
-    skipFields?.includes(`${pascalCased}Fragment.${fieldName}`);
+    skipFields?.includes(`${casedName}Fragment.${fieldName}`);
 
   // We deal with spreads and nonSpreads separately
   const nonSpreads = fields.filter((field) => !field.isSpread);
@@ -376,16 +379,12 @@ const createFakerFields = (
 
   const nonSpreadString = nonSpreads
     .filter((field) => !shouldSkipField(field.fieldName))
-    .map((field) =>
-      createFakerValue(field, enums, pascalCased, skipFields, scalars),
-    )
+    .map((field) => createFakerValue(field, enums, casedName))
     .join(",");
 
   const spreadValues = spreads
     .filter((field) => !shouldSkipField(field.fieldName))
-    .map((field) =>
-      createFakerValue(field, enums, pascalCased, skipFields, scalars),
-    );
+    .map((field) => createFakerValue(field, enums, casedName));
 
   let spreadString: string = "";
 
@@ -404,9 +403,7 @@ const createFakerFields = (
 const createFakerValue = (
   field: FragmentField,
   enums: Enum[],
-  pascalCased: string,
-  skipFields?: string[],
-  scalars?: PluginConfig["scalars"],
+  casedName: string,
 ): string => {
   if (field.fieldName === "__typename") {
     return `__typename: '${field.objectName}'`;
@@ -417,20 +414,14 @@ const createFakerValue = (
 
   if (field.spreadName) {
     // Field was a named spread:
-    const fragmentName = toPascalCase(field.spreadName);
+    const fragmentName = convertToCorrectCaseType(field.spreadName);
     return `${prefix}fake${fragmentName}()${suffix}`;
   }
 
   if (field.fields && field.isSpread && !field.spreadName) {
     // Field was an inline-spread:
     // Recursively go back to createFakerFields to render its subfields:
-    const subFields = createFakerFields(
-      field.fields,
-      enums,
-      pascalCased,
-      skipFields,
-      scalars,
-    );
+    const subFields = createFakerFields(field.fields, enums, casedName);
     return `${prefix}{${subFields}}${suffix}`;
   }
 
@@ -441,19 +432,13 @@ const createFakerValue = (
     }
 
     // Recursively go back to createFakerFields to render the subfields:
-    const subFields = createFakerFields(
-      field.fields,
-      enums,
-      pascalCased,
-      skipFields,
-      scalars,
-    );
+    const subFields = createFakerFields(field.fields, enums, casedName);
 
     return `${field.fieldName}: ${prefix}{ ${subFields} }${suffix}`;
   }
 
   // Field was a Scalar field:
-  const fakerMethod = createFakerMethod(field, enums, scalars);
+  const fakerMethod = createFakerMethod(field, enums);
   if (fakerMethod) {
     return `${field.fieldName}: ${prefix}${fakerMethod}${suffix}`;
   }
@@ -465,10 +450,10 @@ const findFakerMethodOfScalar = (
   scalar: string,
   defaultMethod: string,
   field: Field,
-  config?: ScalarsConfig,
 ) => {
-  const scalarConfig = config?.[scalar];
-  const defaultFieldMethod = config?.[scalar]?._default || defaultMethod;
+  const { scalars } = pluginConfig;
+  const scalarConfig = scalars?.[scalar];
+  const defaultFieldMethod = scalars?.[scalar]?._default || defaultMethod;
 
   if (!scalarConfig) {
     return defaultFieldMethod;
@@ -518,12 +503,12 @@ const findDefaultFakerMethodForScalar = (scalar: string) => {
 };
 
 // prettier-ignore
-const createFakerMethod = (field: Field, enums: Enum[], scalars?: ScalarsConfig) => {
+const createFakerMethod = (field: Field, enums: Enum[]) => {
   const myEnum = findFieldAsExistingEnum(field, enums)
 
   if (myEnum) {
     return `faker.helpers.arrayElement(${JSON.stringify(myEnum.enumValues)})`
   } else {
-    return findFakerMethodOfScalar(field.fieldType, findDefaultFakerMethodForScalar(field.fieldType), field, scalars);
+    return findFakerMethodOfScalar(field.fieldType, findDefaultFakerMethodForScalar(field.fieldType), field);
   }
 }
