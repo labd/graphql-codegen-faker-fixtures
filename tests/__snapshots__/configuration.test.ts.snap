@@ -4,7 +4,7 @@ exports[`configuration > should be able to override faker methods according to s
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        id: myCustomDefaultIdStringFakerMethod(),name: myCustomPersonNameFakerMethod(),age: faker.number.int(),address: myCustomDefaultStringFakerMethod()
+        id: myCustomDefaultIdStringFakerMethod(),name: myCustomPersonNameFakerMethod(),age: faker.number.int(),address: { streetName: myCustomDefaultStringFakerMethod(),zipCode: myCustomAddressZipCodeFakerMethod() }
       }
 
       return override
@@ -15,7 +15,32 @@ exports[`configuration > should be able to override faker methods according to s
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: myCustomDefaultIdStringFakerMethod(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: myCustomDefaultStringFakerMethod()
+        id: myCustomDefaultIdStringFakerMethod(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  "
+`;
+
+exports[`configuration > should be able to override faker methods for custom scalars 1`] = `
+"
+    export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
+      const fixture:types.PersonFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetName: faker.lorem.words(),zipCode: faker.lorem.words() }
+      }
+
+      return override
+        ? merge(fixture, override)
+        : fixture
+    }
+  
+
+    export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
+      const fixture:types.AnimalFragment = {
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (myCustomImageScalarFakerMethod())) }
       }
 
       return override
@@ -29,7 +54,7 @@ exports[`configuration > should be able to override faker methods for specific f
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: { streetName: faker.lorem.words(),zipCode: faker.lorem.words() }
       }
 
       return override
@@ -40,7 +65,7 @@ exports[`configuration > should be able to override faker methods for specific f
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
       }
 
       return override
@@ -54,7 +79,7 @@ exports[`configuration > should be able to override faker methods for specific f
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: myCustomNameFakerMethod(),age: faker.number.int(),address: { streetName: faker.lorem.words(),zipCode: faker.lorem.words() }
       }
 
       return override
@@ -65,7 +90,7 @@ exports[`configuration > should be able to override faker methods for specific f
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
       }
 
       return override
@@ -104,7 +129,7 @@ import { faker } from '@faker-js/faker';
 
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetName: faker.lorem.words(),zipCode: faker.lorem.words() }
       }
 
       return override
@@ -115,7 +140,7 @@ import { faker } from '@faker-js/faker';
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
       }
 
       return override
@@ -129,7 +154,7 @@ exports[`configuration > should be able to override the default faker method for
 "
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        id: faker.string.uuid(),name: myCustomStringFakerMethod(),age: faker.number.int(),address: myCustomStringFakerMethod()
+        id: faker.string.uuid(),name: myCustomStringFakerMethod(),age: faker.number.int(),address: { streetName: myCustomStringFakerMethod(),zipCode: myCustomStringFakerMethod() }
       }
 
       return override
@@ -140,7 +165,7 @@ exports[`configuration > should be able to override the default faker method for
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: faker.string.uuid(),name: myCustomStringFakerMethod(),age: faker.number.int(),address: myCustomStringFakerMethod()
+        id: faker.string.uuid(),name: myCustomStringFakerMethod(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
       }
 
       return override
@@ -179,7 +204,7 @@ import { faker } from '@faker-js/faker';
 
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetName: faker.lorem.words(),zipCode: faker.lorem.words() }
       }
 
       return override
@@ -190,7 +215,7 @@ import { faker } from '@faker-js/faker';
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
       }
 
       return override
@@ -229,7 +254,7 @@ import { faker } from '@faker-js/faker';
 
     export const fakePerson = (override?:DeepPartial<types.PersonFragment>):types.PersonFragment => {
       const fixture:types.PersonFragment = {
-        id: faker.string.uuid(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),age: faker.number.int(),address: { streetName: faker.lorem.words(),zipCode: faker.lorem.words() }
       }
 
       return override
@@ -240,7 +265,7 @@ import { faker } from '@faker-js/faker';
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: faker.string.uuid(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
       }
 
       return override
@@ -279,7 +304,7 @@ import { faker } from '@faker-js/faker';
 
     export const fakeAnimal = (override?:DeepPartial<types.AnimalFragment>):types.AnimalFragment => {
       const fixture:types.AnimalFragment = {
-        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: faker.lorem.words()
+        id: faker.string.uuid(),name: faker.lorem.words(),age: faker.number.int(),address: { streetNumber: faker.number.int(),images: repeat(random(1 , 5), () => (faker.lorem.words())) }
       }
 
       return override

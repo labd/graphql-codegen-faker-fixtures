@@ -18,6 +18,7 @@ type Address {
   additionalAddressInfo: String
   externalId: ID
   key: String
+  person: Person
 }
 
 type Person {

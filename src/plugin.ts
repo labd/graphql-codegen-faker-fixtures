@@ -429,6 +429,7 @@ const createFakerValue = (
       enums,
       pascalCased,
       skipFields,
+      scalars,
     );
     return `${prefix}{${subFields}}${suffix}`;
   }
@@ -445,6 +446,7 @@ const createFakerValue = (
       enums,
       pascalCased,
       skipFields,
+      scalars,
     );
 
     return `${field.fieldName}: ${prefix}{ ${subFields} }${suffix}`;

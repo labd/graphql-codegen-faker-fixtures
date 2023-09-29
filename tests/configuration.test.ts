@@ -3,18 +3,27 @@ import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
 
 const schema = /* GraphQL */ `
+  scalar Image
+
+  type Address {
+    streetName: String
+    streetNumber: Int
+    zipCode: String
+    images: [Image!]
+  }
+
   type Person {
     id: ID!
     name: String
     age: Int
-    address: String
+    address: Address
   }
 
   type Animal {
     id: ID!
     name: String
     age: Int
-    address: String
+    address: Address
   }
 `;
 
@@ -23,14 +32,20 @@ const document = /* GraphQL */ `
     id
     name
     age
-    address
+    address {
+      streetName
+      zipCode
+    }
   }
 
   fragment animal on Animal {
     id
     name
     age
-    address
+    address {
+      streetNumber
+      images
+    }
   }
 `;
 
@@ -47,7 +62,7 @@ describe("configuration", () => {
     expect(response).toMatchSnapshot();
 
     expect(response).toContain("name: myCustomStringFakerMethod()");
-    expect(response).toContain("address: myCustomStringFakerMethod()");
+    expect(response).toContain("streetName: myCustomStringFakerMethod()");
   });
 
   it("should be able to override faker methods for specific field for String scalar", () => {
@@ -62,7 +77,7 @@ describe("configuration", () => {
     expect(response).toMatchSnapshot();
 
     expect(response).toContain("name: myCustomNameFakerMethod()");
-    expect(response).toContain("address: faker.lorem.words()");
+    expect(response).toContain("streetName: faker.lorem.words()");
   });
 
   it("should be able to override faker methods for specific field on specific object for String scalar", () => {
@@ -80,6 +95,22 @@ describe("configuration", () => {
     expect(response).toContain("name: faker.lorem.words()");
   });
 
+  it("should be able to override faker methods for custom scalars", () => {
+    const response = plugin(
+      buildSchema(schema),
+      [{ document: parse(document) }],
+      {
+        buildersOnly: true,
+        scalars: { Image: { _default: "myCustomImageScalarFakerMethod()" } },
+      },
+    );
+    expect(response).toMatchSnapshot();
+
+    expect(response).toContain(
+      "images: repeat(random(1 , 5), () => (myCustomImageScalarFakerMethod()))",
+    );
+  });
+
   it("should be able to override faker methods according to specific configurations", () => {
     const response = plugin(
       buildSchema(schema),
@@ -91,6 +122,7 @@ describe("configuration", () => {
             _default: "myCustomDefaultStringFakerMethod()",
             name: "myCustomNameFakerMethod()",
             ["Person.name"]: "myCustomPersonNameFakerMethod()",
+            ["Address.zipCode"]: "myCustomAddressZipCodeFakerMethod()",
           },
           ID: {
             _default: "myCustomDefaultIdStringFakerMethod()",
@@ -102,7 +134,10 @@ describe("configuration", () => {
 
     expect(response).toContain("name: myCustomPersonNameFakerMethod()");
     expect(response).toContain("name: myCustomNameFakerMethod()");
-    expect(response).toContain("address: myCustomDefaultStringFakerMethod()");
+    expect(response).toContain(
+      "streetName: myCustomDefaultStringFakerMethod()",
+    );
+    expect(response).toContain("zipCode: myCustomAddressZipCodeFakerMethod()");
     expect(response).toContain("id: myCustomDefaultIdStringFakerMethod()");
   });
 
