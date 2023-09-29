@@ -1,5 +1,11 @@
 # graphql-codegen-faker-fixtures
 
+## 0.5.1
+
+### Patch Changes
+
+- a42d11b: fix incorrect subfield generation from config
+
 ## 0.5.0
 
 ### Minor Changes
