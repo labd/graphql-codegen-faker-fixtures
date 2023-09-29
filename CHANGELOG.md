@@ -1,5 +1,11 @@
 # graphql-codegen-faker-fixtures
 
+## 0.4.0
+
+### Minor Changes
+
+- 5953827: remove manual git identity setting in release workflow
+
 ## 0.3.0
 
 ### Minor Changes
