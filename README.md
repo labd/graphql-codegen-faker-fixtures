@@ -4,17 +4,17 @@ This repository contains a GraphQL Codegen plugin that generates fixture builder
 
 ## Installation
 
-Run either of the following commands to add the package, based on your package manager of choice:
+Run either of the following commands to add the package and it's dependencies, based on your package manager of choice:
 
 ```sh
 # pnpm
-pnpm i -D graphql-codegen-faker-fixtures
+pnpm i -D graphql-codegen-faker-fixtures @faker-js/faker deepmerge-ts
 
 # npm
-npm i --save-dev graphql-codegen-faker-fixtures
+npm i --save-dev graphql-codegen-faker-fixtures @faker-js/faker deepmerge-ts
 
 # yarn
-yarn add -D graphql-codegen-faker-fixtures
+yarn add -D graphql-codegen-faker-fixtures @faker-js/faker deepmerge-ts
 ```
 
 ## Usage
