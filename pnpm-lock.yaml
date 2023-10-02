@@ -30,7 +30,7 @@ devDependencies:
     version: 0.2.0(eslint@8.45.0)(typescript@5.2.2)
   '@types/jest':
     specifier: ^29.5.3
-    version: 29.5.3
+    version: 29.5.5
   '@types/node':
     specifier: ^20.5.7
     version: 20.5.7
@@ -1358,8 +1358,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest@29.5.3:
-    resolution: {integrity: sha512-1Nq7YrO/vJE/FYnqYyw0FS8LdrjExSgIiHyKg7xPpn+yi8Q4huZryKnkJatN1ZRH89Kw2v33/8ZMB7DuZeSLlA==}
+  /@types/jest@29.5.5:
+    resolution: {integrity: sha512-ebylz2hnsWR9mYvmBFbXJXr+33UPc4+ZdxyDXh5w0FlPBTfCVN3wPL+kuOiQt3xvrK419v7XWeAs+AeOksafXg==}
     dependencies:
       expect: 29.6.2
       pretty-format: 29.6.2
