@@ -301,7 +301,7 @@ const collectFragments = (
 
 /**
  * Creates a cased fragmentName based on the given `namingConvention`.
- * `change-case-all#pascalCased` by default.
+ * `change-case-all#pascalCase` by default.
  */
 const convertToCorrectCaseType = (fragmentName: string): string => {
   const { namingConvention } = pluginConfig;

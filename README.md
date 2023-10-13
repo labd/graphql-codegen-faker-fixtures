@@ -105,9 +105,9 @@ The example above and a copy in `yml` format can be found in the /examle directo
 
 The config object includes the following fields:
 
-#### `typeImport` (`string`)
+#### `buildersOnly` (`boolean`)
 
-Import types generated from your fragments based on your GraphQL schema. These types provide typing of the fixture builder functions.
+When true the plugin will only return the fixture builder functions without the normal addition of a disclaimer, utility functions (`repeat`, `deepmerge` & `random`), utilty type (`DeepPartial`), and faker seed setup.
 
 #### `fakerjsSeed` (`number`)
 
@@ -116,25 +116,14 @@ default value: `12345654321`
 Number used to seed faker.
 [Reference](https://fakerjs.dev/guide/usage.html#reproducible-results)
 
-#### `buildersOnly` (`boolean`)
+#### `namingConvention` (`"keep" | "change-case-all#<case-type>"`)
 
-When true the plugin will only return the fixture builder functions without the normal addition of a disclaimer, utility functions (`repeat`, `deepmerge` & `random`), utilty type (`DeepPartial`), and faker seed setup.
+default value: `change-case-all#pascalCase`
 
-#### `skipFields` (`string[]`)
+supported `<case-type>` options: `camelCase | capitalCase | constantCase | dotCase | headerCase | noCase | paramCase | pascalCase | pathCase | sentenceCase | snakeCase`
 
-Skip the given fields while generating the fixture builders. The notation is as follows:
-
-```typescript
-skipFields: ['PersonFragment.email'],
-```
-
-#### `skipFragments` (`string[]`)
-
-Skip the given fragments while generating the fixture builders. The notation is as follows:
-
-```typescript
-skipFragments: ['person'],
-```
+Naming convention used in fixture builder generation.
+[Reference](https://github.com/btxtiger/change-case-all)
 
 #### `scalars` (`ScalarConfig`)
 
@@ -165,6 +154,26 @@ scalars: {
     }
 }
 ```
+
+#### `skipFields` (`string[]`)
+
+Skip the given fields while generating the fixture builders. The notation is as follows:
+
+```typescript
+skipFields: ['PersonFragment.email'],
+```
+
+#### `skipFragments` (`string[]`)
+
+Skip the given fragments while generating the fixture builders. The notation is as follows:
+
+```typescript
+skipFragments: ['person'],
+```
+
+#### `typeImport` (`string`)
+
+Import types generated from your fragments based on your GraphQL schema. These types provide typing of the fixture builder functions.
 
 ## Development
 

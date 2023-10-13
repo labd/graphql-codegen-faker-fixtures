@@ -34,10 +34,11 @@ export type PluginConfig = {
    * Default: 12345654321
    */
   fakerjsSeed?: number;
-  /**
-   * Where do we import the types from?
+  /*
+   * Keep all GraphQL names as-is, or modify with a change-case-all method?
+   * Default: `change-case-all#pascalCase`
    */
-  typeImport?: string;
+  namingConvention?: "keep" | `change-case-all#${CaseType}`;
   /**
    * Override fields with custom faker methods?
    */
@@ -50,10 +51,10 @@ export type PluginConfig = {
    * Should we skip whole fragments? Notation is like: deliveryMethodInfo
    */
   skipFragments?: string[];
-  /*
-   * Keep all GraphQL names as-is, or modify with a change-case-all method?
+  /**
+   * Where do we import the types from?
    */
-  namingConvention?: "keep" | `change-case-all#${CaseType}`;
+  typeImport?: string;
 };
 
 export type CodegenConfig = DefaultCodegenConfig & {
