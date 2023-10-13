@@ -1,5 +1,12 @@
 # graphql-codegen-faker-fixtures
 
+## 0.7.1
+
+### Patch Changes
+
+- 3ad62a0: update documentation and comments regarding namingconvention
+- 053bea5: bump postcss from 8.4.27 to 8.4.31 (security vulnerability)
+
 ## 0.7.0
 
 ### Minor Changes
