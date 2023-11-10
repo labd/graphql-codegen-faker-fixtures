@@ -2,7 +2,7 @@
   "name": "graphql-codegen-faker-fixtures",
   "description": "Generate faker fixtures for your fields",
   "author": "Lab Digital <opensource@labdigital.nl>",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "license": "MIT",
   "keywords": [
     "graphql",
