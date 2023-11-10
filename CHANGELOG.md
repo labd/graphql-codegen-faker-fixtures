@@ -1,5 +1,14 @@
 # graphql-codegen-faker-fixtures
 
+## 0.7.2
+
+### Patch Changes
+
+- 32ba167: @types/jest from 29.5.5 to 29.5.7
+- a7d6953: lint-staged from 14.0.1 to 15.0.2
+- 4bdc963: @faker-js/faker from 8.1.0 to 8.2.0
+- 1476830: @types/node from 20.8.0 to 20.9.0
+
 ## 0.7.1
 
 ### Patch Changes
