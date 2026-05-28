@@ -216,20 +216,20 @@ const collectFragments = (
         const collectedField: Field | undefined =
           fieldName === "__typename"
             ? // We have encountered a '__typename' field.
-            // These are special as they should have a hardcoded value: objectName
-            {
-              fieldType: "__typename",
-              fieldName: "__typename",
-              objectName: objectName,
-            }
+              // These are special as they should have a hardcoded value: objectName
+              {
+                fieldType: "__typename",
+                fieldName: "__typename",
+                objectName: objectName,
+              }
             : // field was not a __typename.
-            // Let's see if we can find the Field we have collected earlier.
-            // It should contain more info on its type.
-            collectedFields.find(
-              (collectedField) =>
-                collectedField.objectName === objectName &&
-                collectedField.fieldName === fieldName,
-            );
+              // Let's see if we can find the Field we have collected earlier.
+              // It should contain more info on its type.
+              collectedFields.find(
+                (collectedField) =>
+                  collectedField.objectName === objectName &&
+                  collectedField.fieldName === fieldName,
+              );
 
         if (!collectedField) {
           throw new Error(
@@ -340,10 +340,10 @@ const createFragmentBuilder = (
       export const fake${casedName} = ():${typeName} =>
         faker.helpers.arrayElement([
           ${fragment.fields
-        .filter((field) => field.spreadName)
-        .map((field) => convertToCorrectCaseType(field.spreadName || ""))
-        .map((casedName) => `fake${casedName}()`)
-        .join(",")}
+            .filter((field) => field.spreadName)
+            .map((field) => convertToCorrectCaseType(field.spreadName || ""))
+            .map((casedName) => `fake${casedName}()`)
+            .join(",")}
         ])
     `;
   }
