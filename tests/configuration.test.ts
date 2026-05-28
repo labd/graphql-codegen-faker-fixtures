@@ -1,6 +1,6 @@
-import { plugin } from "../dist";
-import { buildSchema } from "graphql/utilities";
 import { parse } from "graphql";
+import { buildSchema } from "graphql/utilities";
+import { plugin } from "../src";
 
 const schema = /* GraphQL */ `
   scalar Image

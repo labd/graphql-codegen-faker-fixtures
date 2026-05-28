@@ -1,7 +1,6 @@
 import { parse } from "graphql";
 import { buildSchema } from "graphql/utilities";
-
-import { plugin } from "../dist/index";
+import { plugin } from "../src";
 
 const schema = /* GraphQL */ `
   type Person {
