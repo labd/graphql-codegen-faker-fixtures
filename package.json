@@ -32,7 +32,7 @@
     "prepare": "husky install",
     "start": "tsup --watch",
     "test": "vitest --run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
@@ -46,12 +46,12 @@
     "@labdigital/eslint-config-node": "^0.2.0",
     "@types/jest": "^29.5.3",
     "@types/node": "^24.0.0",
+    "@typescript/native-preview": "7.0.0-dev.20260525.1",
     "graphql-tag": "^2.12.6",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
     "prettier": "^3.0.3",
     "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
     "vitest": "^0.34.6"
   },
   "peerDependencies": {
