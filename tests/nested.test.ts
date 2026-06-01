@@ -27,12 +27,12 @@ const document = /* GraphQL */ `
 `;
 
 describe("nested", () => {
-  it("should create a builder for a fragment that uses nested fields", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
-  });
+	it("should create a builder for a fragment that uses nested fields", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
+	});
 });

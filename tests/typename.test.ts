@@ -19,13 +19,13 @@ const document = /* GraphQL */ `
 `;
 
 describe("typename", () => {
-  it("should create a basic builder which includes a hardcoded __typename", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
-    expect(response).toContain("__typename: 'Person'");
-  });
+	it("should create a basic builder which includes a hardcoded __typename", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
+		expect(response).toContain("__typename: 'Person'");
+	});
 });

@@ -34,12 +34,12 @@ const document = /* GraphQL */ `
 `;
 
 describe("multi fragments on same object", () => {
-  it("be able to deal with multiple fragments on same object", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
-  });
+	it("be able to deal with multiple fragments on same object", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
+	});
 });

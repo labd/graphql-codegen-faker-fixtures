@@ -18,12 +18,12 @@ const document = /* GraphQL */ `
 `;
 
 describe("basic", () => {
-  it("should create a basic builder for the person fragment", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
-  });
+	it("should create a basic builder for the person fragment", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
+	});
 });

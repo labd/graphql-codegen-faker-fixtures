@@ -24,15 +24,15 @@ const document = /* GraphQL */ `
 `;
 
 describe("enums", () => {
-  it("should create a builder for a fragment that uses an enum field", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
-    expect(response).toContain(
-      'gender: faker.helpers.arrayElement(["MALE","FEMALE"])',
-    );
-  });
+	it("should create a builder for a fragment that uses an enum field", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
+		expect(response).toContain(
+			'gender: faker.helpers.arrayElement(["MALE","FEMALE"])',
+		);
+	});
 });

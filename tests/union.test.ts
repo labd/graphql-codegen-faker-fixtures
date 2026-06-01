@@ -34,18 +34,18 @@ const document = /* GraphQL */ `
 `;
 
 describe("union", () => {
-  it("should create a builder for a fragment that uses a union type", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
+	it("should create a builder for a fragment that uses a union type", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain(
-      `faker.helpers.arrayElement([
+		expect(response).toContain(
+			`faker.helpers.arrayElement([
           fakeCat(),fakeDog()
         ])`,
-    );
-  });
+		);
+	});
 });

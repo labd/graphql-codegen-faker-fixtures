@@ -50,12 +50,12 @@ const document = /* GraphQL */ `
 `;
 
 describe("fragment_spread", () => {
-  it("should create a builder for a fragment that uses fragment spreads", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
-  });
+	it("should create a builder for a fragment that uses fragment spreads", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
+	});
 });
