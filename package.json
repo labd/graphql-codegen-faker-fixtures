@@ -22,7 +22,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@8.6.7",
+  "packageManager": "pnpm@11.5.0",
   "scripts": {
     "build": "tsup",
     "example:ts": "graphql-codegen --config example/codegen.ts",
