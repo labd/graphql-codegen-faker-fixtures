@@ -1,6 +1,5 @@
 {
-  "**/*.json": ["prettier --write"],
-  "**/*.md": ["prettier --write"],
-  "**/*.!{d.}ts": ["eslint --fix --max-warnings 0", "prettier --write"],
-  "**/*.y{,a}ml": ["prettier --write"]
+	"*": [
+		"biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
+	]
 }
