@@ -20,7 +20,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=24"
   },
   "packageManager": "pnpm@11.5.0",
   "scripts": {
@@ -45,7 +45,7 @@
     "@changesets/cli": "^2.26.2",
     "@labdigital/eslint-config-node": "^0.2.0",
     "@types/jest": "^29.5.3",
-    "@types/node": "^20.5.7",
+    "@types/node": "^24.0.0",
     "graphql-tag": "^2.12.6",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
