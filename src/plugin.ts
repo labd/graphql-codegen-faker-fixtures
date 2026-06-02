@@ -12,7 +12,7 @@ import type {
 	UnionTypeDefinitionNode,
 } from "graphql";
 import { Kind, parse, printSchema, visit } from "graphql";
-import {
+import type {
 	Enum,
 	Field,
 	Fragment,
@@ -29,6 +29,8 @@ import {
 // Pro-tip: play around with some TypeScript-code too!
 
 let pluginConfig: PluginConfig;
+
+const DEFAULT_FAKER_SEED = 12_345_654_321;
 
 /**
  * The entry-point called from graphql-codegen
@@ -75,7 +77,7 @@ export const plugin: Plugin = (schema, documents, config) => {
 
       export const random = (min: number, max: number) => faker.number.int({ min, max })
 
-      faker.seed(${fakerjsSeed || 12345654321})
+      faker.seed(${fakerjsSeed || DEFAULT_FAKER_SEED})
   `;
 
 	// Parse the schema into a `DocumentNode` we're able to parse.
@@ -146,6 +148,7 @@ const collectFromSchema = (
 	};
 
 	// Visit the astNode-tree using the visit-method provided by graphql-codegen
+	// biome-ignore-start lint/style/useNamingConvention: graphql-codegen visitor keys must match GraphQL AST node kinds (PascalCase)
 	visit(astNode, {
 		EnumTypeDefinition: {
 			leave: (node: EnumTypeDefinitionNode) => {
@@ -173,6 +176,7 @@ const collectFromSchema = (
 			leave: visitObjectTypeOrInterfaceType,
 		},
 	});
+	// biome-ignore-end lint/style/useNamingConvention: graphql-codegen visitor keys must match GraphQL AST node kinds (PascalCase)
 
 	return { fields, enums, unions };
 };
@@ -208,7 +212,7 @@ const collectFragments = (
 	) => {
 		const fields: FragmentField[] = [];
 
-		node.selections.map((selection) => {
+		node.selections.forEach((selection) => {
 			if (selection.kind === Kind.FIELD) {
 				// ... we have encountered a 'regular' field.
 				const fieldName = selection.name.value;
@@ -261,7 +265,7 @@ const collectFragments = (
 
 				fields.push(field);
 			} else if (selection.kind === Kind.FRAGMENT_SPREAD) {
-				// Have a look at `./tests/fragment_spread.test.ts` to see what a FRAGMENT_SPREAD is
+				// Have a look at `./tests/fragment-spread.test.ts` to see what a FRAGMENT_SPREAD is
 				fields.push({
 					spreadName: selection.name.value,
 					isSpread: true,
@@ -270,7 +274,7 @@ const collectFragments = (
 					objectName: "",
 				});
 			} else if (selection.kind === Kind.INLINE_FRAGMENT) {
-				// Have a look at `./tests/inline_fragment.test.ts` to see what a INLINE_FRAGMENT is
+				// Have a look at `./tests/inline-fragment.test.ts` to see what a INLINE_FRAGMENT is
 				const objectName = selection.typeCondition?.name.value || "";
 				fields.push({
 					fieldName: "",
@@ -286,6 +290,7 @@ const collectFragments = (
 	};
 
 	visit(astNode, {
+		// biome-ignore lint/style/useNamingConvention: graphql-codegen visitor keys must match GraphQL AST node kinds (PascalCase)
 		FragmentDefinition: {
 			leave: (node) => {
 				const fragmentName = node.name.value;
@@ -386,7 +391,7 @@ const createFakerFields = (
 		.filter((field) => !shouldSkipField(field.fieldName))
 		.map((field) => createFakerValue(field, enums, casedName));
 
-	let spreadString: string = "";
+	let spreadString = "";
 
 	if (spreadValues.length === 1) {
 		spreadString = `...${spreadValues[0]}`;
@@ -463,7 +468,7 @@ const findFakerMethodOfScalar = (
 		if (
 			typeof scalarConfig[`${field.objectName}.${field.fieldName}`] !== "string"
 		) {
-			throw Error(
+			throw new Error(
 				`Configuration error: value of ${field.objectName}.${field.fieldName} in ${scalar} is not of type "string".`,
 			);
 		}
@@ -472,7 +477,7 @@ const findFakerMethodOfScalar = (
 
 	if (field.fieldName in scalarConfig) {
 		if (typeof scalarConfig[field.fieldName] !== "string") {
-			throw Error(
+			throw new Error(
 				`Configuration error: value of ${field.fieldName} in ${scalar} is not of type "string".`,
 			);
 		}
@@ -496,7 +501,6 @@ const findDefaultFakerMethodForScalar = (scalar: string) => {
 			return "faker.datatype.boolean()";
 		case "ID":
 			return "faker.string.uuid()";
-		case "String":
 		default:
 			return "faker.lorem.words()";
 	}

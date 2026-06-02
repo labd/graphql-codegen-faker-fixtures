@@ -1,5 +1,5 @@
-import { CodegenConfig as DefaultCodegenConfig } from "@graphql-codegen/cli";
-import { PluginFunction } from "@graphql-codegen/plugin-helpers";
+import type { CodegenConfig as DefaultCodegenConfig } from "@graphql-codegen/cli";
+import type { PluginFunction } from "@graphql-codegen/plugin-helpers";
 
 export type ScalarsConfig = Partial<
 	Record<string, Record<string, string> & { _default?: string }>
@@ -86,8 +86,8 @@ export type Field = {
 
 export type FragmentField = {
 	fields?: FragmentField[]; // Fragment fields can have 'nested' fields. See nested.test.ts for more details
-	spreadName?: string; // Some 'fields' have a spreadName. See fragment_spread.test.ts for more details.
-	isSpread?: boolean; // Some 'fields' are a spread. See fragment_spread.test.ts and inline_fragment.test.ts for more details.
+	spreadName?: string; // Some 'fields' have a spreadName. See fragment-spread.test.ts for more details.
+	isSpread?: boolean; // Some 'fields' are a spread. See fragment-spread.test.ts and inline-fragment.test.ts for more details.
 } & Field;
 
 export type Fragment = {

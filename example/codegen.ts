@@ -1,3 +1,4 @@
+// biome-ignore-all lint/style/useNamingConvention: scalars config keys must match GraphQL scalar type names
 import type { CodegenConfig } from "../dist/index.d.mts";
 
 const config: CodegenConfig = {
@@ -9,7 +10,7 @@ const config: CodegenConfig = {
 			plugins: ["dist/index.js"],
 			config: {
 				typeImport: "@types",
-				fakerjsSeed: 98765,
+				fakerjsSeed: 98_765,
 				scalars: {
 					Email: {
 						_default: "faker.internet.email()",

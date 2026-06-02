@@ -1,3 +1,4 @@
+// biome-ignore-all lint/style/useNamingConvention: scalars config keys must match GraphQL scalar type names
 import { parse } from "graphql";
 import { buildSchema } from "graphql/utilities";
 import { plugin } from "../src";
@@ -146,7 +147,7 @@ describe("configuration", () => {
 			buildSchema(schema),
 			[{ document: parse(document) }],
 			{
-				fakerjsSeed: 56765,
+				fakerjsSeed: 56_765,
 			},
 		);
 		expect(response).toMatchSnapshot();
