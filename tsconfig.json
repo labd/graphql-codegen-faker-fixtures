@@ -16,7 +16,7 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"strictNullChecks": true,
-		"types": ["node", "jest"]
+		"types": ["node", "vitest/globals"]
 	},
 	"exclude": ["node_modules", "example/fixture_builders.ts"]
 }
