@@ -1,0 +1,90 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6.0.8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: package.json
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        id: lint
+        if: ${{ !cancelled() }}
+        run: pnpm lint
+
+      - name: Format
+        id: format
+        if: ${{ !cancelled() }}
+        run: pnpm format
+
+      - name: Knip
+        id: knip
+        if: ${{ !cancelled() }}
+        run: pnpm lint:knip
+
+      - name: Build
+        id: build
+        if: ${{ !cancelled() }}
+        run: pnpm build
+
+      - name: Typecheck
+        id: typecheck
+        if: ${{ !cancelled() }}
+        run: pnpm typecheck
+
+      - name: Test
+        id: test
+        if: ${{ !cancelled() }}
+        run: pnpm test
+
+      - name: Summary
+        if: ${{ !cancelled() }}
+        env:
+          LINT: ${{ steps.lint.outcome }}
+          FORMAT: ${{ steps.format.outcome }}
+          KNIP: ${{ steps.knip.outcome }}
+          TYPECHECK: ${{ steps.typecheck.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          TEST: ${{ steps.test.outcome }}
+        run: |
+          icon() {
+            case "$1" in
+              success) echo "✅ Pass" ;;
+              failure) echo "❌ Fail" ;;
+              skipped) echo "⏭️ Skip" ;;
+              *)       echo "❔ $1" ;;
+            esac
+          }
+          {
+            echo "## PR Checks"
+            echo ""
+            echo "| Check     | Result  |"
+            echo "| --------- | ------- |"
+            echo "| Lint      | $(icon "$LINT") |"
+            echo "| Format    | $(icon "$FORMAT") |"
+            echo "| Knip      | $(icon "$KNIP") |"
+            echo "| Build     | $(icon "$BUILD") |"
+            echo "| Typecheck | $(icon "$TYPECHECK") |"
+            echo "| Test      | $(icon "$TEST") |"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
