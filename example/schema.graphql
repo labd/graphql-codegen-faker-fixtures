@@ -1,41 +1,41 @@
 scalar Email
 
 type Address {
-  id: ID!
-  streetName: String!
-  streetNumber: String!
-  additionalStreetInfo: String
-  postalCode: String!
-  city: String!
-  region: String
-  state: String
-  country: String!
-  company: String
-  department: String
-  building: String
-  apartment: String
-  pOBox: String
-  additionalAddressInfo: String
-  externalId: ID
-  key: String
-  person: Person
+	id: ID!
+	streetName: String!
+	streetNumber: String!
+	additionalStreetInfo: String
+	postalCode: String!
+	city: String!
+	region: String
+	state: String
+	country: String!
+	company: String
+	department: String
+	building: String
+	apartment: String
+	pOBox: String
+	additionalAddressInfo: String
+	externalId: ID
+	key: String
+	person: Person
 }
 
 type Person {
-  id: ID!
-  phone: String
-  mobile: String
-  email: Email
-  secondaryEmail: Email
-  fax: String
-  title: String
-  salutation: String
-  firstName: String!
-  lastName: String!
-  married: Boolean
+	id: ID!
+	phone: String
+	mobile: String
+	email: Email
+	secondaryEmail: Email
+	fax: String
+	title: String
+	salutation: String
+	firstName: String!
+	lastName: String!
+	married: Boolean
 }
 
 type Query {
-  getAddress: Address!
-  getPerson: Person!
+	getAddress: Address!
+	getPerson: Person!
 }

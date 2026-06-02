@@ -1,61 +1,64 @@
 {
-  "name": "graphql-codegen-faker-fixtures",
-  "description": "Generate faker fixtures for your fields",
-  "author": "Lab Digital <opensource@labdigital.nl>",
-  "version": "0.7.2",
-  "license": "MIT",
-  "keywords": [
-    "graphql",
-    "codegen",
-    "graphql-codegen",
-    "plugin",
-    "typescript",
-    "mocks",
-    "fakes"
-  ],
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "pnpm@8.6.7",
-  "scripts": {
-    "build": "tsup",
-    "example:ts": "graphql-codegen --config example/codegen.ts",
-    "example:yml": "graphql-codegen --config example/codegen.yml",
-    "format": "prettier \"**/*.{ts,tsx,md}\" --write",
-    "lint": "eslint --max-warnings 0",
-    "prepare": "husky install",
-    "start": "tsup --watch",
-    "test": "vitest --run",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@faker-js/faker": "^8.0.2",
-    "@graphql-codegen/cli": "^5.0.0",
-    "@graphql-codegen/plugin-helpers": "^5.0.0",
-    "deepmerge-ts": "5.1.0",
-    "graphql": "^16.7.1"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.26.2",
-    "@labdigital/eslint-config-node": "^0.2.0",
-    "@types/jest": "^29.5.3",
-    "@types/node": "^20.5.7",
-    "graphql-tag": "^2.12.6",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.0.2",
-    "prettier": "^3.0.3",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.6"
-  },
-  "peerDependencies": {
-    "@graphql-codegen/cli": "^5.0.0",
-    "@graphql-codegen/plugin-helpers": "^5.0.0"
-  }
+	"name": "graphql-codegen-faker-fixtures",
+	"description": "Generate faker fixtures for your fields",
+	"author": "Lab Digital <opensource@labdigital.nl>",
+	"version": "0.7.2",
+	"license": "MIT",
+	"keywords": [
+		"graphql",
+		"codegen",
+		"graphql-codegen",
+		"plugin",
+		"typescript",
+		"mocks",
+		"fakes"
+	],
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"engines": {
+		"node": ">=24"
+	},
+	"packageManager": "pnpm@11.5.0",
+	"scripts": {
+		"build": "tsup",
+		"example:ts": "graphql-codegen --config example/codegen.ts",
+		"example:yml": "graphql-codegen --config example/codegen.yml",
+		"format": "biome check --linter-enabled=false",
+		"format:fix": "biome check --linter-enabled=false --write",
+		"lint": "biome lint --max-diagnostics 500",
+		"lint:fix": "biome lint --max-diagnostics 500 --fix",
+		"lint:knip": "pnpm knip",
+		"prepare": "husky",
+		"start": "tsup --watch",
+		"test": "vitest --run",
+		"typecheck": "tsgo --noEmit"
+	},
+	"dependencies": {
+		"@faker-js/faker": "^10.4.0",
+		"@graphql-codegen/cli": "^7.0.0",
+		"@graphql-codegen/plugin-helpers": "^7.0.1",
+		"deepmerge-ts": "7.1.5",
+		"graphql": "^16.14.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.15",
+		"@changesets/cli": "^2.31.0",
+		"@types/node": "^24.0.0",
+		"@typescript/native-preview": "7.0.0-dev.20260526.1",
+		"graphql-tag": "^2.12.6",
+		"husky": "^9.1.7",
+		"knip": "^6.14.2",
+		"lint-staged": "^17.0.5",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3",
+		"vitest": "^4.1.7"
+	},
+	"peerDependencies": {
+		"@graphql-codegen/cli": "^7.0.0",
+		"@graphql-codegen/plugin-helpers": "^7.0.0"
+	}
 }

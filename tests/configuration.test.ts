@@ -1,3 +1,4 @@
+// biome-ignore-all lint/style/useNamingConvention: scalars config keys must match GraphQL scalar type names
 import { parse } from "graphql";
 import { buildSchema } from "graphql/utilities";
 import { plugin } from "../src";
@@ -50,146 +51,146 @@ const document = /* GraphQL */ `
 `;
 
 describe("configuration", () => {
-  it("should be able to override the default faker method for String scalar", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        buildersOnly: true,
-        scalars: { String: { _default: "myCustomStringFakerMethod()" } },
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to override the default faker method for String scalar", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				buildersOnly: true,
+				scalars: { String: { _default: "myCustomStringFakerMethod()" } },
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain("name: myCustomStringFakerMethod()");
-    expect(response).toContain("streetName: myCustomStringFakerMethod()");
-  });
+		expect(response).toContain("name: myCustomStringFakerMethod()");
+		expect(response).toContain("streetName: myCustomStringFakerMethod()");
+	});
 
-  it("should be able to override faker methods for specific field for String scalar", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        buildersOnly: true,
-        scalars: { String: { name: "myCustomNameFakerMethod()" } },
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to override faker methods for specific field for String scalar", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				buildersOnly: true,
+				scalars: { String: { name: "myCustomNameFakerMethod()" } },
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain("name: myCustomNameFakerMethod()");
-    expect(response).toContain("streetName: faker.lorem.words()");
-  });
+		expect(response).toContain("name: myCustomNameFakerMethod()");
+		expect(response).toContain("streetName: faker.lorem.words()");
+	});
 
-  it("should be able to override faker methods for specific field on specific object for String scalar", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        buildersOnly: true,
-        scalars: { String: { ["Person.name"]: "myCustomNameFakerMethod()" } },
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to override faker methods for specific field on specific object for String scalar", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				buildersOnly: true,
+				scalars: { String: { ["Person.name"]: "myCustomNameFakerMethod()" } },
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain("name: myCustomNameFakerMethod()");
-    expect(response).toContain("name: faker.lorem.words()");
-  });
+		expect(response).toContain("name: myCustomNameFakerMethod()");
+		expect(response).toContain("name: faker.lorem.words()");
+	});
 
-  it("should be able to override faker methods for custom scalars", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        buildersOnly: true,
-        scalars: { Image: { _default: "myCustomImageScalarFakerMethod()" } },
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to override faker methods for custom scalars", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				buildersOnly: true,
+				scalars: { Image: { _default: "myCustomImageScalarFakerMethod()" } },
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain(
-      "images: repeat(random(1 , 5), () => (myCustomImageScalarFakerMethod()))",
-    );
-  });
+		expect(response).toContain(
+			"images: repeat(random(1 , 5), () => (myCustomImageScalarFakerMethod()))",
+		);
+	});
 
-  it("should be able to override faker methods according to specific configurations", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        buildersOnly: true,
-        scalars: {
-          String: {
-            _default: "myCustomDefaultStringFakerMethod()",
-            name: "myCustomNameFakerMethod()",
-            ["Person.name"]: "myCustomPersonNameFakerMethod()",
-            ["Address.zipCode"]: "myCustomAddressZipCodeFakerMethod()",
-          },
-          ID: {
-            _default: "myCustomDefaultIdStringFakerMethod()",
-          },
-        },
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to override faker methods according to specific configurations", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				buildersOnly: true,
+				scalars: {
+					String: {
+						_default: "myCustomDefaultStringFakerMethod()",
+						name: "myCustomNameFakerMethod()",
+						["Person.name"]: "myCustomPersonNameFakerMethod()",
+						["Address.zipCode"]: "myCustomAddressZipCodeFakerMethod()",
+					},
+					ID: {
+						_default: "myCustomDefaultIdStringFakerMethod()",
+					},
+				},
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain("name: myCustomPersonNameFakerMethod()");
-    expect(response).toContain("name: myCustomNameFakerMethod()");
-    expect(response).toContain(
-      "streetName: myCustomDefaultStringFakerMethod()",
-    );
-    expect(response).toContain("zipCode: myCustomAddressZipCodeFakerMethod()");
-    expect(response).toContain("id: myCustomDefaultIdStringFakerMethod()");
-  });
+		expect(response).toContain("name: myCustomPersonNameFakerMethod()");
+		expect(response).toContain("name: myCustomNameFakerMethod()");
+		expect(response).toContain(
+			"streetName: myCustomDefaultStringFakerMethod()",
+		);
+		expect(response).toContain("zipCode: myCustomAddressZipCodeFakerMethod()");
+		expect(response).toContain("id: myCustomDefaultIdStringFakerMethod()");
+	});
 
-  it("should be able to override faker seed", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        fakerjsSeed: 56765,
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to override faker seed", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				fakerjsSeed: 56_765,
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain("faker.seed(56765)");
-  });
+		expect(response).toContain("faker.seed(56765)");
+	});
 
-  it("should be able to set location of the type import", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        typeImport: "@types",
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to set location of the type import", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				typeImport: "@types",
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).toContain("import * as types from '@types';");
-  });
+		expect(response).toContain("import * as types from '@types';");
+	});
 
-  it("should be able to skip fields", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        skipFields: ["PersonFragment.name", "AnimalFragment.name"],
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to skip fields", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				skipFields: ["PersonFragment.name", "AnimalFragment.name"],
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).not.toContain("name: ");
-  });
+		expect(response).not.toContain("name: ");
+	});
 
-  it("should be able to skip fragments", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      {
-        skipFragments: ["person"],
-      },
-    );
-    expect(response).toMatchSnapshot();
+	it("should be able to skip fragments", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{
+				skipFragments: ["person"],
+			},
+		);
+		expect(response).toMatchSnapshot();
 
-    expect(response).not.toContain("export const fakePerson");
-  });
+		expect(response).not.toContain("export const fakePerson");
+	});
 });

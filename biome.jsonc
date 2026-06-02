@@ -1,0 +1,116 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"defaultBranch": "main",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": ["**"]
+	},
+	"formatter": {
+		"enabled": true,
+		"lineWidth": 80,
+		"indentStyle": "tab"
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"suspicious": {
+				"useIterableCallbackReturn": {
+					"level": "error",
+					"options": {
+						"checkForEach": false
+					}
+				},
+				"noDeprecatedImports": "warn",
+				"noConstantBinaryExpressions": "error",
+				"noEmptyBlockStatements": "warn",
+				"noEmptySource": {
+					"level": "warn",
+					"options": {
+						"allowComments": true
+					}
+				},
+				"noEvolvingTypes": "error",
+				"noSkippedTests": "warn",
+				"noVar": "error",
+				"useAwait": "error",
+				"useErrorMessage": "error",
+				"useGuardForIn": "warn",
+				"useNumberToFixedDigitsArgument": "error"
+			},
+			"complexity": {
+				"noImplicitCoercions": "error",
+				"noUselessCatchBinding": "error",
+				"noUselessStringConcat": "error",
+				"useSimplifiedLogicExpression": "error",
+				"useWhile": "error",
+				"noExcessiveCognitiveComplexity": "warn",
+				"useMaxParams": "warn",
+				"noUselessTernary": "error",
+				"useDateNow": "error",
+				"useLiteralKeys": "off"
+			},
+			"correctness": {
+				"noGlobalDirnameFilename": "error",
+				"useJsonImportAttributes": "error",
+				"useSingleJsDocAsterisk": "error",
+				"noUnusedFunctionParameters": "off",
+				"noUnusedImports": "error",
+				"noUnusedVariables": "warn",
+				"useImportExtensions": "off"
+			},
+			"style": {
+				"useNumericSeparators": "info",
+				"useNumberNamespace": "error",
+				"useNamingConvention": {
+					"level": "warn",
+					"options": {
+						"strictCase": false
+					}
+				},
+				"useForOf": "error",
+				"useDefaultParameterLast": "error",
+				"useConsistentTypeDefinitions": {
+					"level": "warn",
+					"options": {
+						"style": "type"
+					}
+				},
+				"useCollapsedIf": "info",
+				"useCollapsedElseIf": "info",
+				"useAsConstAssertion": "error",
+				"noYodaExpression": "error",
+				"noUnusedTemplateLiteral": "error",
+				"noSubstr": "error",
+				"noNestedTernary": "warn",
+				"noMagicNumbers": "info",
+				"noEnum": "warn",
+				"noParameterAssign": "off",
+				"noUselessElse": "off",
+				"useConsistentBuiltinInstantiation": "error",
+				"useFilenamingConvention": {
+					"level": "error",
+					"options": {
+						"requireAscii": true,
+						"filenameCases": ["kebab-case"]
+					}
+				},
+				"useTemplate": "off",
+				"useThrowOnlyError": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noInferrableTypes": "error"
+			},
+			"nursery": {
+				"useAwaitThenable": "error",
+				"noFloatingPromises": "error",
+				"noMisusedPromises": "error"
+			}
+		}
+	}
+}

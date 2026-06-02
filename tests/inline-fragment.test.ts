@@ -47,12 +47,12 @@ const document = /* GraphQL */ `
 `;
 
 describe("inline_fragment", () => {
-  it("should create a builder for a fragment that uses inline fragments", () => {
-    const response = plugin(
-      buildSchema(schema),
-      [{ document: parse(document) }],
-      { buildersOnly: true },
-    );
-    expect(response).toMatchSnapshot();
-  });
+	it("should create a builder for a fragment that uses inline fragments", () => {
+		const response = plugin(
+			buildSchema(schema),
+			[{ document: parse(document) }],
+			{ buildersOnly: true },
+		);
+		expect(response).toMatchSnapshot();
+	});
 });
