@@ -77,7 +77,6 @@ export type Union = {
 	unionValues: string[];
 };
 
-// prettier-ignore
 export type Field = {
 	fieldName: string; // Name of a field in a Type or Fragment, e.g. name, brand, size, etc.
 	objectName: string; // Name of the graphql-type the field is defined in. E.g. Product, Customer, etc.
@@ -85,14 +84,12 @@ export type Field = {
 	isArray?: boolean; // Is this field an array?
 };
 
-// prettier-ignore
 export type FragmentField = {
 	fields?: FragmentField[]; // Fragment fields can have 'nested' fields. See nested.test.ts for more details
 	spreadName?: string; // Some 'fields' have a spreadName. See fragment_spread.test.ts for more details.
 	isSpread?: boolean; // Some 'fields' are a spread. See fragment_spread.test.ts and inline_fragment.test.ts for more details.
 } & Field;
 
-// prettier-ignore
 export type Fragment = {
 	fragmentName: string; // The name of the fragment. E.g. person, product, etc.
 	objectName: string; // The name of the graphql-type this fragment is based on. E.g. Person, Product, etc.

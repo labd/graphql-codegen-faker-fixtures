@@ -502,7 +502,6 @@ const findDefaultFakerMethodForScalar = (scalar: string) => {
 	}
 };
 
-// prettier-ignore
 const createFakerMethod = (field: Field, enums: Enum[]) => {
 	const myEnum = findFieldAsExistingEnum(field, enums);
 
