@@ -1,5 +1,22 @@
 # graphql-codegen-faker-fixtures
 
+## 0.8.0
+
+### Minor Changes
+
+- d2d4585: Maintenance pass. Breaking changes:
+
+  - Requires Node.js >= 24 (was >= 18)
+  - Requires `@graphql-codegen/cli` and `@graphql-codegen/plugin-helpers` >= 7
+    (older versions had unresolved transitive security advisories)
+  - Bumps `@faker-js/faker` to v10 (was v8)
+
+  No behavioral changes to generated fixture builders.
+
+### Patch Changes
+
+- e2c94b9: run tests against src instead of dist
+
 ## 0.7.2
 
 ### Patch Changes
