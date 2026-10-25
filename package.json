@@ -61,5 +61,13 @@
 	"peerDependencies": {
 		"@graphql-codegen/cli": "^7.0.0",
 		"@graphql-codegen/plugin-helpers": "^7.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/labd/graphql-codegen-faker-fixtures.git"
+	},
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
 	}
 }
