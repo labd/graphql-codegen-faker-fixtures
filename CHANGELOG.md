@@ -1,5 +1,12 @@
 # graphql-codegen-faker-fixtures
 
+## 0.8.1
+
+### Patch Changes
+
+- e53afcd: Build with tsdown instead of tsup. Output file names (`index.js`, `index.mjs`, `index.d.ts`, `index.d.mts`, `index.global.js`) are unchanged.
+- 1c0e3ab: Resolve security advisories: bump `deepmerge-ts` to 8.0.2 and `@faker-js/faker` to ^10.6.0, and update vulnerable transitive dependencies.
+
 ## 0.8.0
 
 ### Minor Changes
