@@ -38,10 +38,10 @@
 		"typecheck": "tsgo --noEmit"
 	},
 	"dependencies": {
-		"@faker-js/faker": "^10.4.0",
+		"@faker-js/faker": "^10.6.0",
 		"@graphql-codegen/cli": "^7.0.0",
 		"@graphql-codegen/plugin-helpers": "^7.0.1",
-		"deepmerge-ts": "7.1.5",
+		"deepmerge-ts": "8.0.2",
 		"graphql": "^16.14.0"
 	},
 	"devDependencies": {
@@ -53,9 +53,10 @@
 		"husky": "^9.1.7",
 		"knip": "^6.14.2",
 		"lint-staged": "^17.0.5",
-		"tsup": "^8.5.1",
+		"tsup": "^9.0.0",
 		"typescript": "^5.9.3",
-		"vitest": "^4.1.7"
+		"vite": "^8.3.4",
+		"vitest": "^4.1.12"
 	},
 	"peerDependencies": {
 		"@graphql-codegen/cli": "^7.0.0",
