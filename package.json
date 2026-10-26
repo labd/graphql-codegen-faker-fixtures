@@ -20,7 +20,7 @@
 		"dist"
 	],
 	"engines": {
-		"node": ">=24"
+		"node": ">=22"
 	},
 	"packageManager": "pnpm@12.14.0",
 	"scripts": {
@@ -35,32 +35,35 @@
 		"prepare": "husky",
 		"start": "tsdown --watch",
 		"test": "vitest --run",
-		"typecheck": "tsgo --noEmit"
+		"typecheck": "tsc --noEmit",
+		"check": "biome ci && pnpm build && pnpm typecheck",
+		"publish:ci": "pnpm build && pnpm changeset publish",
+		"publish:version": "pnpm changeset version && pnpm format:fix"
 	},
 	"dependencies": {
 		"@faker-js/faker": "^10.6.0",
-		"@graphql-codegen/cli": "^7.0.0",
-		"@graphql-codegen/plugin-helpers": "^7.0.1",
-		"deepmerge-ts": "8.0.2",
-		"graphql": "^16.14.0"
+		"@graphql-codegen/cli": "^7.4.6",
+		"@graphql-codegen/plugin-helpers": "^7.4.2",
+		"deepmerge-ts": "8.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.15",
-		"@changesets/cli": "^2.31.0",
-		"@types/node": "^24.0.0",
-		"@typescript/native-preview": "7.0.0-dev.20260526.1",
-		"graphql-tag": "^2.12.6",
+		"@biomejs/biome": "^2.5.15",
+		"@changesets/cli": "^3.0.3",
+		"@types/node": "^26.6.5",
+		"graphql": "^17.0.2",
+		"graphql-tag": "^2.12.7",
 		"husky": "^9.1.7",
-		"knip": "^6.14.2",
-		"lint-staged": "^17.0.5",
+		"knip": "^6.42.0",
+		"lint-staged": "^17.6.0",
 		"tsdown": "^0.23.1",
-		"typescript": "^5.9.3",
+		"typescript": "^7.0.2",
 		"vite": "^8.3.4",
-		"vitest": "^4.1.12"
+		"vitest": "^5.0.5"
 	},
 	"peerDependencies": {
 		"@graphql-codegen/cli": "^7.0.0",
-		"@graphql-codegen/plugin-helpers": "^7.0.0"
+		"@graphql-codegen/plugin-helpers": "^7.0.0",
+		"graphql": "^16.0.0 || ^17.0.0"
 	},
 	"repository": {
 		"type": "git",
