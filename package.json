@@ -13,9 +13,24 @@
 		"mocks",
 		"fakes"
 	],
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"typings": "dist/index.d.ts",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			}
+		},
+		"./package.json": "./package.json"
+	},
+	"type": "commonjs",
+	"sideEffects": false,
 	"files": [
 		"dist"
 	],
@@ -38,7 +53,8 @@
 		"typecheck": "tsc --noEmit",
 		"check": "biome ci && pnpm build && pnpm typecheck",
 		"publish:ci": "pnpm build && pnpm changeset publish",
-		"publish:version": "pnpm changeset version && pnpm format:fix"
+		"publish:version": "pnpm changeset version && pnpm format:fix",
+		"lint:package": "publint --strict"
 	},
 	"dependencies": {
 		"@faker-js/faker": "^10.6.0",
@@ -55,6 +71,7 @@
 		"husky": "^9.1.7",
 		"knip": "^6.42.0",
 		"lint-staged": "^17.6.0",
+		"publint": "^0.3.25",
 		"tsdown": "^0.23.1",
 		"typescript": "^7.0.2",
 		"vite": "^8.3.4",
