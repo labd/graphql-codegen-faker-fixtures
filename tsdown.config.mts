@@ -2,6 +2,16 @@ import { defineConfig } from "tsdown";
 
 export default defineConfig({
 	entry: ["src/index.ts"],
+	publint: true,
+	failOnWarn: true,
+	// TypeScript 7 is used on purpose; its "experimental API" notice is not actionable.
+	// The IIFE build has never had a global name or globals (same as with tsup);
+	// silence those rolldown notices so failOnWarn only trips on new warnings.
+	suppressWarnings: [
+		"TypeScript 7.0 does not yet have a stable API",
+		"you may not be able to access the exports of an IIFE bundle",
+		"output.globals",
+	],
 	clean: true,
 	dts: true,
 	sourcemap: true,

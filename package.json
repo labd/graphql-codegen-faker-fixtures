@@ -53,8 +53,7 @@
 		"typecheck": "tsc --noEmit",
 		"check": "biome ci && pnpm build && pnpm typecheck",
 		"publish:ci": "pnpm build && pnpm changeset publish",
-		"publish:version": "pnpm changeset version && pnpm format:fix",
-		"lint:package": "publint --strict"
+		"publish:version": "pnpm changeset version && pnpm format:fix"
 	},
 	"dependencies": {
 		"@faker-js/faker": "^10.6.0",
