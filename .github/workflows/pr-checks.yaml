@@ -49,6 +49,11 @@ jobs:
         if: ${{ !cancelled() }}
         run: pnpm build
 
+      - name: Lint package
+        id: publint
+        if: ${{ !cancelled() }}
+        run: pnpm lint:package
+
       - name: Typecheck
         id: typecheck
         if: ${{ !cancelled() }}
@@ -67,6 +72,7 @@ jobs:
           KNIP: ${{ steps.knip.outcome }}
           TYPECHECK: ${{ steps.typecheck.outcome }}
           BUILD: ${{ steps.build.outcome }}
+          PUBLINT: ${{ steps.publint.outcome }}
           TEST: ${{ steps.test.outcome }}
         run: |
           icon() {
@@ -86,6 +92,7 @@ jobs:
             echo "| Format    | $(icon "$FORMAT") |"
             echo "| Knip      | $(icon "$KNIP") |"
             echo "| Build     | $(icon "$BUILD") |"
+            echo "| Publint   | $(icon "$PUBLINT") |"
             echo "| Typecheck | $(icon "$TYPECHECK") |"
             echo "| Test      | $(icon "$TEST") |"
           } | tee -a "$GITHUB_STEP_SUMMARY"
