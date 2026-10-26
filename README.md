@@ -1,5 +1,8 @@
 # graphql-codegen-faker-fixtures
 
+[![npm](https://img.shields.io/npm/v/graphql-codegen-faker-fixtures)](https://www.npmjs.com/package/graphql-codegen-faker-fixtures)
+[![CI](https://github.com/labd/graphql-codegen-faker-fixtures/actions/workflows/pr-checks.yaml/badge.svg)](https://github.com/labd/graphql-codegen-faker-fixtures/actions/workflows/pr-checks.yaml)
+
 This repository contains a GraphQL Codegen plugin that generates fixture builders of your fragments based on your GraphQL schema and populates them with [faker](https://github.com/faker-js/faker).
 
 ## Installation
